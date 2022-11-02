@@ -23,6 +23,10 @@ public class test : MonoBehaviour
     [SerializeField] private Tile tile;
     [SerializeField] private Color[] colors;
 
+    private void Awake()
+    {
+        tilemap = GetComponent<Tilemap>();
+    }
     private void Start()
     {
         GenerateMap();
@@ -45,7 +49,7 @@ public class test : MonoBehaviour
 
     private void MapRandomFill() //맵을 비율에 따라 벽 혹은 빈 공간으로 랜덤하게 채우는 메소드
     {
-        if (useRandomSeed) seed = Time.time.ToString(); //시드
+        if (useRandomSeed) seed = Random.Range(0f, 100f).ToString(); //시드
 
         System.Random pseudoRandom = new System.Random(seed.GetHashCode()); //시드로 부터 의사 난수 생성
 

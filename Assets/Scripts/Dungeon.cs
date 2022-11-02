@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -14,56 +15,58 @@ public class Dungeon : MonoBehaviour
 
     private void Start()
     {
-
         MakePath();
     }
     public void MakePath()
     {
-        int x = Random.Range(0, 4);
-        Debug.Log(x);
-        //rooms[0, x].roomState = Room.RoomState.Start;
-        rooms[0, x] = 0;
-        for (int y = 0; y < 4;)
+        int x = 0;
+        int y = 0;
+
+        y = Random.Range(0, 4); // 0~3
+
+        rooms[x, y] = 0;
+        while(x != 4)
         {
-            int rando = Random.Range(0, 2);
-            if (rando == 0 && !CheckPath(y, x + 1))
+            int num = Random.Range(0,2);
+            if(num == 0 && !CheckPath(x, y - 1))//왼쪽으로
             {
-                x++;
-                rooms[y, x] = 1;
+                y--;
+                rooms[x, y] = 1;
             }
-            else if (rando == 1 && !CheckPath(y, x - 1))
+            else if (num == 1 && !CheckPath(x, y + 1))//오른쪽으로
             {
-                x--;
-                rooms[y, x] = 1;
+                y++;
+                rooms[x, y] = 1;
             }
             else
             {
-                if(y == 3)
+                rooms[x, y] = 1;
+                x++;
+                if(x == 4)
                 {
-                    rooms[y, x] = 4;
+                    rooms[x-1, y] = 4;
                 }
-                rooms[y, x] = 1;
-                y++;
             }
 
         }
-        for (int i = 0; i < 4; i++)
+
+        for(int i = 0; i< 4; i++)
         {
-            for (int j = 0; j < 4; j++)
+            for(int j = 0; j<4; j++)
             {
-                Debug.Log(i+" , "+ j + " : " + rooms[i, j]);
+                Debug.Log("rooms " + i + " , " + j + " : " + rooms[i, j]);
             }
         }
     }
 
-    public bool CheckPath(int y, int x)
+    public bool CheckPath(int x, int y)
     {
         //return rooms[y, x].roomState == Room.RoomState.Start || rooms[y, x].roomState == Room.RoomState.Path;
         if(y<0 || x<0|| y>3||x>3)
         {
             return true;
         }
-        if (rooms[y, x] == 1 || rooms[y,x] == 0)
+        if (rooms[x, y] == 1 || rooms[x,y] == 0)
         {
             return true;
         }

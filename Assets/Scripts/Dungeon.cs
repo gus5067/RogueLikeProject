@@ -40,12 +40,14 @@ public class Dungeon : MonoBehaviour
             }
             else
             {
-                rooms[x, y] = 1;
                 x++;
-                if(x == 4)
+                if (x == 4)
                 {
-                    rooms[x-1, y] = 4;
+                    rooms[x - 1, y] = 4;
+                    break;
                 }
+                rooms[x, y] = 1;
+                
             }
 
         }

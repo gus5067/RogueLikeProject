@@ -15,13 +15,20 @@ public class Monster : MonoBehaviour, IDamageable
     public float Speed { get { return speed; } }
 
     [SerializeField] private LayerMask layerMask;
+
+    private Animator anim;
+
+    private bool isHit;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
     public void HitDamage(int damage)
     {
         Hp -= damage;
+        isHit = true;
     }
 
     public void TakeForce(Vector2 dir, int power)
@@ -32,7 +39,7 @@ public class Monster : MonoBehaviour, IDamageable
     private void Update()
     {
         MonsterView();
-        FollowTarget();
+       
     }
     public void MonsterView()
     {
@@ -40,11 +47,23 @@ public class Monster : MonoBehaviour, IDamageable
 
         if(viewTarget != null)
         {
-            target = viewTarget.gameObject;   
+            target = viewTarget.gameObject;
+            FollowTarget();
+            anim.SetBool("Walk", true);
         }
         else
         {
-            return;
+            if(isHit)
+            {
+                FollowTarget();
+                anim.SetBool("Walk", true);
+            }
+            else
+            {
+                anim.SetBool("Walk", false);
+                return;
+            }
+           
         }
        
     }
@@ -53,6 +72,7 @@ public class Monster : MonoBehaviour, IDamageable
         if (target != null)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.transform.position, Speed * Time.deltaTime);
+
         }
         else
         {

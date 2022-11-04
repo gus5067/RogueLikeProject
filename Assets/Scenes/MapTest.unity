@@ -6417,6 +6417,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 7811862460784948414, guid: 5377ee83b8d2470438705bee9f9b341b, type: 3}
+      propertyPath: m_LinearDrag
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7811862460784948415, guid: 5377ee83b8d2470438705bee9f9b341b, type: 3}
       propertyPath: m_RootOrder
       value: 5

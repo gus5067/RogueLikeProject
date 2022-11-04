@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour, IDamageable
+public class Monster : MonoBehaviour, IDamageable, IForceable
 {
     [SerializeField] private int hp;
     public int Hp { get { return hp; } set { hp = value; } }
@@ -30,16 +30,9 @@ public class Monster : MonoBehaviour, IDamageable
         Hp -= damage;
         isHit = true;
     }
-
-    public void TakeForce(Vector2 dir, int power)
-    {
-        rb.AddForce(dir * power , ForceMode2D.Impulse);
-    }
-
     private void Update()
     {
         MonsterView();
-       
     }
     public void MonsterView()
     {
@@ -86,4 +79,18 @@ public class Monster : MonoBehaviour, IDamageable
         Gizmos.DrawWireSphere(transform.position, viewRadius);
     }
 
+    public void TakeFoce(Vector2 dir, int power)
+    {
+        rb.AddForce(dir * power, ForceMode2D.Impulse);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            Player player = collision.gameObject.GetComponent<Player>();
+            player?.HitDamage(5);
+            player?.TakeFoce((player.transform.position - transform.position).normalized, 5);
+        }
+    }
 }

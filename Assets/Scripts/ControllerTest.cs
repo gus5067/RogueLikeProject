@@ -75,5 +75,4 @@ public class ControllerTest : MonoBehaviour
             hitPoint.anchoredPosition = new Vector2(-0.5f, 0.3f);
         }
     }
-
 }

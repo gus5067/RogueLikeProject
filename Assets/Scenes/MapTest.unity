@@ -261,7 +261,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 4
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Follow: {fileID: 6987801307485698404}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 7
+    OrthographicSize: 4
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -553,7 +553,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1.2
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -4210,6 +4210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoint: {fileID: 1129472515}
+  hitArea: {x: 1, y: 2}
 --- !u!1 &2422605160298669948
 GameObject:
   m_ObjectHideFlags: 0
@@ -5469,6 +5470,7 @@ GameObject:
   - component: {fileID: 834045296}
   - component: {fileID: 834045295}
   - component: {fileID: 834045297}
+  - component: {fileID: 6987801307485698406}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -5476,6 +5478,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6987801307485698406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987801307485698405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24a06ce73052a8a4592521232b790c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
 --- !u!1 &6987801307497666452
 GameObject:
   m_ObjectHideFlags: 0

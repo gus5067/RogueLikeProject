@@ -32,6 +32,10 @@ public class ControllerTest : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.K))
         {
+            anim.SetTrigger("AxeAttack");
+        }
+        else if(Input.GetKeyDown(KeyCode.J))
+        {
             anim.SetTrigger("Attack");
         }
     }
@@ -62,7 +66,14 @@ public class ControllerTest : MonoBehaviour
 
     public void HitPointMove()
     {
-        hitPoint.anchoredPosition = new Vector2(-0.4f * Mathf.Abs(inputX), 0.3f + inputY * 0.6f);
+        if(Mathf.Abs(inputX) > 0 || Mathf.Abs(inputY) > 0)
+        {
+            hitPoint.anchoredPosition = new Vector2(-0.5f * Mathf.Abs(inputX), 0.3f + inputY * 0.6f);
+        }
+        else
+        {
+            hitPoint.anchoredPosition = new Vector2(-0.5f, 0.3f);
+        }
     }
 
 }

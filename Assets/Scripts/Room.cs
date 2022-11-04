@@ -21,6 +21,8 @@ public class Room : MonoBehaviour
 
     [SerializeField] GameObject pathPrefab;
 
+    [SerializeField] GameObject randomPrefab;
+
 
     public GameObject SetRoom(RoomState roomState)
     {
@@ -32,6 +34,8 @@ public class Room : MonoBehaviour
                 return Instantiate(pathPrefab);
             case RoomState.Exit:
                 return Instantiate(exitPrefab);
+            case RoomState.Random:
+                return Instantiate(randomPrefab);
         }
         return null;
     }
@@ -66,7 +70,8 @@ public class Room : MonoBehaviour
 
                         break;
                     default:
-                        Debug.Log("·£´ý ±æ");
+                        GameObject randomObj = SetRoom(RoomState.Random);
+                        randomObj.transform.position = new Vector3(width * j, height * -i, 0);
                         break;
                 }
             }

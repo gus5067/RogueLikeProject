@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 [RequireComponent(typeof(BoxCollider2D), typeof(Rigidbody2D))]
 public class ControllerTest : MonoBehaviour
 {
@@ -21,6 +21,8 @@ public class ControllerTest : MonoBehaviour
 
     [SerializeField] RectTransform hitPoint;
 
+    public event UnityAction<int> onChangeWeapon;
+
     private void Start()
     {
         initScaleX = transform.localScale.x;
@@ -33,10 +35,12 @@ public class ControllerTest : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.K))
         {
             anim.SetTrigger("AxeAttack");
+            onChangeWeapon?.Invoke(0);
         }
         else if(Input.GetKeyDown(KeyCode.J))
         {
             anim.SetTrigger("Attack");
+            onChangeWeapon?.Invoke(1);
         }
     }
     public void CharcterMoveTest()

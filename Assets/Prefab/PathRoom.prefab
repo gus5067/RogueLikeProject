@@ -2444,6 +2444,7 @@ GameObject:
   - component: {fileID: 3445180807265623636}
   - component: {fileID: 3597532864867202227}
   - component: {fileID: 8197819780787660055}
+  - component: {fileID: 4675606362611500670}
   m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
@@ -3048,7 +3049,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -3130,3 +3131,15 @@ CompositeCollider2D:
       - {x: -7.9999704, y: -7}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &4675606362611500670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8828985321979012451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4548993b248804aa39092b0c17c82c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

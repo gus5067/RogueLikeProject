@@ -23,6 +23,8 @@ public class Room : MonoBehaviour
 
     [SerializeField] GameObject randomPrefab;
 
+    [SerializeField] GameObject player;
+
 
     public GameObject SetRoom(RoomState roomState)
     {
@@ -59,6 +61,7 @@ public class Room : MonoBehaviour
                     case 0:
                         GameObject startObj = SetRoom(RoomState.Start);
                         startObj.transform.position = new Vector3(width * j, height * -i, 0);
+                        player.transform.position = startObj.transform.position;
                         break;
                     case 1:
                         GameObject pathObj = SetRoom(RoomState.Path);
@@ -110,14 +113,6 @@ public class Room : MonoBehaviour
 
             }
 
-        }
-
-        for (int i = 0; i < 4; i++)
-        {
-            for (int j = 0; j < 4; j++)
-            {
-                Debug.Log("rooms " + i + " , " + j + " : " + rooms[i, j]);
-            }
         }
     }
 

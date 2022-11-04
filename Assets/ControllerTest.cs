@@ -19,6 +19,8 @@ public class ControllerTest : MonoBehaviour
 
     float initScaleX;
 
+    [SerializeField] RectTransform hitPoint;
+
     private void Start()
     {
         initScaleX = transform.localScale.x;
@@ -26,6 +28,12 @@ public class ControllerTest : MonoBehaviour
     private void Update()
     {
         CharcterMoveTest();
+        HitPointMove();
+
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            anim.SetTrigger("Attack");
+        }
     }
     public void CharcterMoveTest()
     {
@@ -34,7 +42,6 @@ public class ControllerTest : MonoBehaviour
 
         if (inputX > 0)
         {
-            
             transform.localScale = new Vector3(-1f * initScaleX, transform.localScale.y, transform.localScale.z);
         }
         else if (inputX < 0)
@@ -51,7 +58,11 @@ public class ControllerTest : MonoBehaviour
         }
 
         transform.Translate(new Vector2(Mathf.RoundToInt(inputX), Mathf.RoundToInt(inputY)) * Time.deltaTime * Speed);
+    }
 
+    public void HitPointMove()
+    {
+        hitPoint.anchoredPosition = new Vector2(-0.4f * Mathf.Abs(inputX), 0.3f + inputY * 0.6f);
     }
 
 }

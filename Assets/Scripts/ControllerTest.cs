@@ -16,24 +16,21 @@ public class ControllerTest : MonoBehaviour
 
     [SerializeField] private PlayerMoveType moveType;
 
-    [SerializeField, Range(1f, 10f)]
+    [SerializeField]
     private float speed;
     public float Speed
     {
         get { return speed; }
         set
         {
-            if (value > maxSpeed)
-                speed = maxSpeed;
-            else
-                speed = value;
+            speed = value;
         }
     }
 
-        [SerializeField] private float maxSpeed;
+    [SerializeField] private int maxVelocity;
 
-    [SerializeField, Range(1f, 10f)]
-    private float accelSpeed;
+    //[SerializeField, Range(1f, 10f)]
+    //private float accelSpeed;
 
     float inputX;
     float inputY;
@@ -102,17 +99,56 @@ public class ControllerTest : MonoBehaviour
         switch(moveType)
         {
             case PlayerMoveType.Platform:
+                if(Input.GetKeyDown(KeyCode.Space))
+                {
+                    rb.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                }
                 if(Mathf.Abs(inputX) > 0)
                 {
-                    Speed += accelSpeed;
-             
+                    if (Mathf.Abs(rb.velocity.x) < maxVelocity)
+                    {
+                        rb.AddForce(new Vector2(inputX * Speed * Time.deltaTime, 0));
+                        Debug.Log("힘");
+                    }
+                    else
+                    {
+                        Debug.Log("최대속도 이동");
+                        rb.velocity = new Vector2(maxVelocity * inputX, rb.velocity.y);
+                    }
                 }
                 else
                 {
-                    Speed -= accelSpeed;
+                    break;
                 }
-                rb.velocity = new Vector2(Speed * inputX, rb.velocity.y);
+
                 break;
+            //if(Mathf.Abs(inputX) != 0)
+            //{
+            //    Speed += accelSpeed * inputX * Time.deltaTime;
+            //    rb.velocity = new Vector2(Speed, rb.velocity.y);
+            //}
+            //else
+            //{
+            //    if(rb.velocity.x > 0)
+            //    {
+            //        Speed -= 2 * accelSpeed * Time.deltaTime;
+            //        if(rb.velocity.x < 0)
+            //        {
+            //            Speed = 0;
+            //        }
+            //    }
+            //    else if(rb.velocity.x < 0)
+            //    {
+            //        Speed += 2 * accelSpeed * Time.deltaTime;
+            //        if (rb.velocity.x > 0)
+            //        {
+            //            Speed = 0;
+            //        }
+            //    }
+
+            //}
+
+
             case PlayerMoveType.TopDown:
                 transform.Translate(new Vector2(Mathf.RoundToInt(inputX), Mathf.RoundToInt(inputY)) * Time.deltaTime * Speed);
                 break;

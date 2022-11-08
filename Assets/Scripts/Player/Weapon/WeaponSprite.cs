@@ -11,10 +11,7 @@ public class WeaponSprite : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();   
-        
-        ControllerTest controller = FindObjectOfType<ControllerTest>();
-
-        controller.onChangeWeapon += OnChangeWeapon;
+       
     }
 
     public void OnChangeWeapon(int num)

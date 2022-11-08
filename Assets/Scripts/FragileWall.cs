@@ -18,4 +18,5 @@ public class FragileWall : MonoBehaviour
 
         tileMap.SetTile(tilePos, null);
     }
+
 }

@@ -9,6 +9,7 @@ public class HitTest : MonoBehaviour
     [SerializeField] private Vector2 hitArea;
 
     public void OnBreakWalls()
+
     {
         Collider2D col = Physics2D.OverlapBox(hitPoint.transform.position, hitArea, 0f);
 

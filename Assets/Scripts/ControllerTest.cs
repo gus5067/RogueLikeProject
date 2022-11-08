@@ -16,6 +16,8 @@ public class ControllerTest : MonoBehaviour
 
     [SerializeField] private PlayerMoveType moveType;
 
+    [SerializeField] private int jumpPower;
+
     [SerializeField]
     private float speed;
     public float Speed
@@ -28,17 +30,11 @@ public class ControllerTest : MonoBehaviour
     }
 
     [SerializeField] private int maxVelocity;
-
-    //[SerializeField, Range(1f, 10f)]
-    //private float accelSpeed;
-
     float inputX;
     float inputY;
     float initScaleX;
 
     [SerializeField] RectTransform hitPoint;
-
-    public event UnityAction<int> onChangeWeapon;
 
     private void Awake()
     {
@@ -48,32 +44,13 @@ public class ControllerTest : MonoBehaviour
     {
         initScaleX = transform.localScale.x;
     }
-    private void Update()
+
+    private void FixedUpdate()
     {
         Move();
-        switch (moveType)
-        {
-            case PlayerMoveType.TopDown:
-              
-                HitPointMove();
-
-                if (Input.GetKeyDown(KeyCode.K))
-                {
-                    anim.SetTrigger("AxeAttack");
-                    onChangeWeapon?.Invoke(0);
-                }
-                else if (Input.GetKeyDown(KeyCode.J))
-                {
-                    anim.SetTrigger("Attack");
-                    onChangeWeapon?.Invoke(1);
-                }
-                break;
-            case PlayerMoveType.Platform:
-                break;
-
-        }
-
+        HitPointMove();
     }
+
     public void Move()
     {
         inputX = Input.GetAxisRaw("Horizontal");
@@ -99,20 +76,18 @@ public class ControllerTest : MonoBehaviour
         switch(moveType)
         {
             case PlayerMoveType.Platform:
-                if(Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    rb.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                    rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
                 }
                 if(Mathf.Abs(inputX) > 0)
                 {
                     if (Mathf.Abs(rb.velocity.x) < maxVelocity)
                     {
                         rb.AddForce(new Vector2(inputX * Speed * Time.deltaTime, 0));
-                        Debug.Log("힘");
                     }
                     else
                     {
-                        Debug.Log("최대속도 이동");
                         rb.velocity = new Vector2(maxVelocity * inputX, rb.velocity.y);
                     }
                 }
@@ -122,33 +97,6 @@ public class ControllerTest : MonoBehaviour
                 }
 
                 break;
-            //if(Mathf.Abs(inputX) != 0)
-            //{
-            //    Speed += accelSpeed * inputX * Time.deltaTime;
-            //    rb.velocity = new Vector2(Speed, rb.velocity.y);
-            //}
-            //else
-            //{
-            //    if(rb.velocity.x > 0)
-            //    {
-            //        Speed -= 2 * accelSpeed * Time.deltaTime;
-            //        if(rb.velocity.x < 0)
-            //        {
-            //            Speed = 0;
-            //        }
-            //    }
-            //    else if(rb.velocity.x < 0)
-            //    {
-            //        Speed += 2 * accelSpeed * Time.deltaTime;
-            //        if (rb.velocity.x > 0)
-            //        {
-            //            Speed = 0;
-            //        }
-            //    }
-
-            //}
-
-
             case PlayerMoveType.TopDown:
                 transform.Translate(new Vector2(Mathf.RoundToInt(inputX), Mathf.RoundToInt(inputY)) * Time.deltaTime * Speed);
                 break;
@@ -157,13 +105,29 @@ public class ControllerTest : MonoBehaviour
     }
     public void HitPointMove()
     {
-        if(Mathf.Abs(inputX) > 0 || Mathf.Abs(inputY) > 0)
+        switch(moveType)
         {
-            hitPoint.anchoredPosition = new Vector2(-0.5f * Mathf.Abs(inputX), 0.3f + inputY * 0.6f);
+            case PlayerMoveType.TopDown:
+                 if (Mathf.Abs(inputX) > 0 || Mathf.Abs(inputY) > 0)
+                {
+                    hitPoint.anchoredPosition = new Vector2(-0.5f * Mathf.Abs(inputX), 0.3f + inputY * 0.6f);
+                }
+                else
+                {
+                    hitPoint.anchoredPosition = new Vector2(-0.5f, 0.3f);
+                }
+                break;
+            case PlayerMoveType.Platform:
+                if (Mathf.Abs(inputX) > 0)
+                {
+                    hitPoint.anchoredPosition = new Vector2(-0.5f * Mathf.Abs(inputX), 0.3f);
+                }
+                else
+                {
+                    hitPoint.anchoredPosition = new Vector2(-0.5f, 0.3f);
+                }
+                break;
         }
-        else
-        {
-            hitPoint.anchoredPosition = new Vector2(-0.5f, 0.3f);
-        }
+       
     }
 }

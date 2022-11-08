@@ -14,7 +14,7 @@ TagManager:
   - Player
   - Monster
   - Platform
-  - 
+  - Minimap
   - 
   - 
   - 
@@ -52,4 +52,7 @@ TagManager:
     locked: 0
   - name: Fog
     uniqueID: 1292145177
+    locked: 0
+  - name: UI
+    uniqueID: 4211928741
     locked: 0

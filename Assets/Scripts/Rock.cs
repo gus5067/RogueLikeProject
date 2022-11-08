@@ -30,10 +30,12 @@ public class Rock : DestroyObject
             }
         }
     }
+    [SerializeField]
     Rock_Type rockType;
-
+    Animator anim;
     private void Awake()
     {
+        anim = GetComponent<Animator>();
         render = GetComponent<SpriteRenderer>();
     }
 
@@ -90,6 +92,7 @@ public class Rock : DestroyObject
     {
         Debug.Log("데미지 입음");
         RockHp -= damage;
+        anim.SetTrigger("Hit");
         if(!slider.gameObject.activeSelf)
         {
             slider.gameObject.SetActive(true);

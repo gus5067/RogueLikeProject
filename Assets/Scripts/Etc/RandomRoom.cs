@@ -11,6 +11,9 @@ public class RandomRoom : MonoBehaviour
     [SerializeField] private int height;
     [SerializeField] private int width;
 
+    [SerializeField] GameObject monsterPrefab;
+    [SerializeField, Range(0, 100)]
+    private int randomMonsterPercent;
     [SerializeField, Range(0, 100)]
     private int randomPercent;
 
@@ -54,7 +57,20 @@ public class RandomRoom : MonoBehaviour
 
     public void SetTile(int x, int y)
     {
+        int num = Random.Range(0, 100);
         Vector3Int pos = new Vector3Int(-width / 2 + x, -height / 2 + y, 0);
-        tileMap.SetTile(pos, wallTile);
+
+        if (x == 0 || x == width - 1 || y == 0 || y == height - 1)
+        {
+            tileMap.SetTile(pos, wallTile);
+        }
+        else
+        {
+            if (num < randomMonsterPercent)
+                Instantiate(monsterPrefab, tileMap.CellToWorld(pos), Quaternion.identity);
+            else
+                tileMap.SetTile(pos, wallTile);
+        }
     }
+
 }

@@ -16,23 +16,44 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
 
     [SerializeField] private LayerMask layerMask;
 
+    private SpriteRenderer[] renderers;
     private Animator anim;
 
-    private bool isHit;
+    private bool isOnceHit;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
+    private void Start()
+    {
+        renderers = GetComponentsInChildren<SpriteRenderer>();
+    }
     public void HitDamage(int damage)
     {
         Hp -= damage;
-        isHit = true;
+        isOnceHit = true;
+        StartCoroutine(Blink());
+
     }
     private void Update()
     {
         MonsterView();
+    }
+    IEnumerator Blink()
+    {
+        WaitForSeconds waitTime = new WaitForSeconds(0.2f);
+
+        for(int i =0; i < renderers.Length; i++)
+        {
+            renderers[i].color = new Color(1, 0, 0, 0.5f); 
+        }
+        yield return waitTime;
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].color = new Color(1, 1, 1, 1f);
+        }
     }
     public void MonsterView()
     {
@@ -46,7 +67,7 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
         }
         else
         {
-            if(isHit)
+            if(isOnceHit)
             {
                 FollowTarget();
                 anim.SetBool("Walk", true);
@@ -90,7 +111,6 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
         {
             Player player = collision.gameObject.GetComponent<Player>();
             player?.HitDamage(5);
-            player?.TakeFoce((player.transform.position - transform.position).normalized, 5);
         }
     }
 }

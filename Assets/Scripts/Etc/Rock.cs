@@ -84,7 +84,9 @@ public class Rock : DestroyObject
 
     public override void DestroyObj()
     {
+       
         GameManager.instance.Money += rewardMoney;
+        Invoke("RespawnRock", Random.Range(5, 10));
         gameObject.SetActive(false);
     }
 
@@ -98,5 +100,15 @@ public class Rock : DestroyObject
             slider.gameObject.SetActive(true);
         }
         slider.value =RockHp / initHp;
+    }
+
+    public void RespawnRock()
+    {
+
+        gameObject.SetActive(true);
+        slider.gameObject.SetActive(false);
+        SetRockType();
+        initHp = RockHp;
+
     }
 }

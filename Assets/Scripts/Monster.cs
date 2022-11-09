@@ -37,7 +37,7 @@ public abstract class Monster : MonoBehaviour, IDamageable, IForceable
 
     [SerializeField] private LayerMask layerMask;
 
-    private SpriteRenderer[] renderers;
+    private SpriteRenderer renderer;
 
     private Animator anim;
 
@@ -53,7 +53,7 @@ public abstract class Monster : MonoBehaviour, IDamageable, IForceable
     }
     private void Start()
     {
-        renderers = GetComponentsInChildren<SpriteRenderer>();
+        renderer = GetComponent<SpriteRenderer>();
     }
     public virtual void HitDamage(int damage)
     {
@@ -74,15 +74,11 @@ public abstract class Monster : MonoBehaviour, IDamageable, IForceable
     {
         WaitForSeconds waitTime = new WaitForSeconds(0.2f);
 
-        for (int i = 0; i < renderers.Length; i++)
-        {
-            renderers[i].color = new Color(1, 0, 0, 0.5f);
-        }
+        renderer.color = new Color(1, 0, 0, 0.5f);
+
         yield return waitTime;
-        for (int i = 0; i < renderers.Length; i++)
-        {
-            renderers[i].color = new Color(1, 1, 1, 1f);
-        }
+
+        renderer.color = new Color(1, 1, 1, 1f);
     }
     public void MonsterView()
     {

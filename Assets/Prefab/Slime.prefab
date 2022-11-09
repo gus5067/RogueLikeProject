@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 7811862460784948413}
   - component: {fileID: 7811862460784948409}
   - component: {fileID: 7811862460784948414}
-  - component: {fileID: 7811862460784948408}
+  - component: {fileID: -5484289696857228018}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Untagged
@@ -240,7 +240,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7811862460784948408
+--- !u!114 &-5484289696857228018
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -252,10 +252,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ed45b42c9d797a448b09a41365b44b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
+  hp: 10
+  speed: 2
   viewRadius: 8.43
   target: {fileID: 0}
-  speed: 2
   layerMask:
     serializedVersion: 2
     m_Bits: 64
+  damage: 0

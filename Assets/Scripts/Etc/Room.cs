@@ -15,13 +15,14 @@ public class Room : MonoBehaviour
     [SerializeField] private int height;
     [SerializeField] private int width;
 
+    [SerializeField] MapData mapData;
+
     [SerializeField] GameObject startPrefab;
 
     [SerializeField] GameObject exitPrefab;
 
-    [SerializeField] GameObject pathPrefab;
-
     [SerializeField] GameObject randomPrefab;
+
 
     [SerializeField] GameObject player;
 
@@ -33,7 +34,7 @@ public class Room : MonoBehaviour
             case RoomState.Start:
                 return Instantiate(startPrefab);
             case RoomState.Path:
-                return Instantiate(pathPrefab);
+                return Instantiate(mapData.pathRooms[Random.Range(0, mapData.pathRooms.Length)]);
             case RoomState.Exit:
                 return Instantiate(exitPrefab);
             case RoomState.Random:

@@ -588,9 +588,9 @@ MonoBehaviour:
   roomState: 0
   height: 14
   width: 16
+  mapData: {fileID: 11400000, guid: c7c8c8978a80c874a93847da7a104d3a, type: 2}
   startPrefab: {fileID: 4197693188388426249, guid: abae06a669451b243b399ff5b065d63c, type: 3}
   exitPrefab: {fileID: 3788303024918362400, guid: ed3ab4970da54204ab3f12fa3913dafc, type: 3}
-  pathPrefab: {fileID: 1648865618434276392, guid: 6f8a93bbdb53ee64ea0c6f0151540e92, type: 3}
   randomPrefab: {fileID: 6950919523566471949, guid: a3a7bbd9975d473458ae5d48a515da27, type: 3}
   player: {fileID: 6987801307485698405}
 --- !u!4 &778265156
@@ -4586,7 +4586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPos: {fileID: 1129472516}
   hitArea: {x: 2, y: 1}
-  damage: 10
+  damage: 1
   power: 10
 --- !u!114 &2422605160267546677
 MonoBehaviour:

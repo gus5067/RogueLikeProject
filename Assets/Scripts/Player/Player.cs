@@ -43,7 +43,7 @@ public class Player : MonoBehaviour,IDamageable,IForceable
         StartCoroutine(Blink());
     }
 
-    public void TakeFoce(Vector2 dir, int power)
+    public void TakeForce(Vector2 dir, int power)
     {
         if(!isHit)
         {

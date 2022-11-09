@@ -26,9 +26,9 @@ public class Sword : Weapon
         {
             foreach (var col in colliders)
             {
-                Monster mons = col.GetComponent<Monster>();
+                Slime mons = col.GetComponent<Slime>();
                 mons?.HitDamage(damage);
-                mons?.TakeFoce((col.transform.position - transform.position).normalized, power);
+                mons?.TakeForce((col.transform.position - transform.position).normalized, power);
             }
         }
     }

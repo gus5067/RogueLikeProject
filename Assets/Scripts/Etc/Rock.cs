@@ -85,7 +85,7 @@ public class Rock : DestroyObject
     public override void DestroyObj()
     {
        
-        GameManager.instance.Money += rewardMoney;
+        GameManager.Instance.Money += rewardMoney;
         Invoke("RespawnRock", Random.Range(5, 10));
         gameObject.SetActive(false);
     }

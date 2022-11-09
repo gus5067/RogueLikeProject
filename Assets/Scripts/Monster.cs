@@ -146,4 +146,5 @@ public abstract class Monster : MonoBehaviour, IDamageable, IForceable
         }
         gameObject.SetActive(false);
     }
+
 }

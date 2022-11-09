@@ -340,7 +340,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 1527
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -4754,7 +4754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPos: {fileID: 1129472516}
   hitArea: {x: 2, y: 1}
-  damage: 1
+  damage: 5
   power: 10
 --- !u!114 &2422605160267546677
 MonoBehaviour:

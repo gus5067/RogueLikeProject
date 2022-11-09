@@ -140,7 +140,10 @@ public abstract class Monster : MonoBehaviour, IDamageable, IForceable
 
     public virtual void Die()
     {
-        StopCoroutine(tempCo);
+        if(tempCo != null)
+        {
+            StopCoroutine(tempCo);
+        }
         gameObject.SetActive(false);
     }
 }

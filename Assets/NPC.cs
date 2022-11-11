@@ -12,6 +12,7 @@ public class NPC : MonoBehaviour, IInteractable
             ConversationController.Instance.conversationData = conversation;
         }
 
+        ConversationController.Instance.ConversationProgress();
 
     }
 }

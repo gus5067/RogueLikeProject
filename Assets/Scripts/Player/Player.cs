@@ -56,6 +56,10 @@ public class Player : MonoBehaviour, IDamageable, IForceable
             colors[i] = renderers[i].color;
     }
 
+    private void Update()
+    {
+        InteractWithTarget();
+    }
     public void HitDamage(int damage)
     {
         if (!isHit)

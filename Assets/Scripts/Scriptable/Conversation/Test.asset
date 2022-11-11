@@ -18,5 +18,5 @@ MonoBehaviour:
   - name: Player
     description: Test2
   - name: NPC
-    description: Test3
+    description: Final
   nextConversation: {fileID: 0}

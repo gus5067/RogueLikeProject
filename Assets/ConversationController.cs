@@ -10,9 +10,8 @@ public class ConversationController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private TextMeshProUGUI conversationName;
 
-    public int conversationNum = 0;
+    public bool isConversation;
     public ConversationData conversationData;
-    public QuestData questData;
 
     private static ConversationController instance;
     public static ConversationController Instance
@@ -35,13 +34,43 @@ public class ConversationController : MonoBehaviour
     public void ConversationProgress()
     {
         conversationUI.SetActive(true);
-        conversationName.text = conversationData.Conversations[0].name;
-        text.text = conversationData.Conversations[0].description;
+        if(isConversation == false)
+        {
+            StartCoroutine(conversationRoutine());
+        }
+       
     }
 
     IEnumerator conversationRoutine()
     {
-        yield return null;
+        isConversation = true;
+        for(int i =0; i < conversationData.Conversations.Length; i++)
+        {
+            conversationName.text = conversationData.Conversations[i].name;
+            text.text = conversationData.Conversations[i].description;
+            Debug.Log("마우스 입력 전 : " + i);
+            yield return new WaitforMouseDown();
+            Debug.Log("마우스 입력 후 : " + i);
+        }
+        yield return new WaitforMouseDown();
+        conversationUI.SetActive(false);
+        isConversation = false;
     }
 
+}
+
+public class WaitforMouseDown : CustomYieldInstruction
+{
+    public override bool keepWaiting
+    {
+        get
+        {
+            return !Input.GetKeyDown(KeyCode.M);
+        }
+    }
+
+    public WaitforMouseDown()
+    {
+        Debug.Log("왼쪽 마우스 입력 대기중");
+    }
 }

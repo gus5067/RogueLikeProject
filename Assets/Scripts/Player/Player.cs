@@ -4,8 +4,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class Player : MonoBehaviour, IDamageable, IForceable
 {
+    public GameObject curTarget;
+
     [SerializeField] private int hp;
     public int Hp
     {
@@ -121,5 +124,14 @@ public class Player : MonoBehaviour, IDamageable, IForceable
         Time.timeScale = 1;
         LoadManager.LoadScene("TownScene");
 
+    }
+
+    public void InteractWithTarget()
+    {
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            IInteractable interactTarget = curTarget.GetComponent<IInteractable>();
+            interactTarget?.Interaction();
+        }
     }
 }

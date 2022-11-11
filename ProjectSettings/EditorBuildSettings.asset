@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MiningCaveScene.unity
     guid: 74494eb3eeae47c41a477e68c8a210ca
+  - enabled: 1
+    path: Assets/Scenes/TownScene.unity
+    guid: 66f4cc76ebfd0074e9db8e3d6e3ba077
   m_configObjects: {}

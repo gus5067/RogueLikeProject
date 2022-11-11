@@ -2,11 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Player : MonoBehaviour,IDamageable,IForceable
+public class Player : MonoBehaviour, IDamageable, IForceable
 {
     [SerializeField] private int hp;
-    public int Hp { get { return hp; } set { hp = value; } }
+    public int Hp
+    {
+        get
+        {
+            return hp;
+        }
+        set
+        {
+            hp = value;
+            if(hp <= 0)
+            {
+                hp = 0;
+                Die();
+            }
+        }
+    }
 
     private Rigidbody2D rb;
 
@@ -16,6 +32,11 @@ public class Player : MonoBehaviour,IDamageable,IForceable
     Color color2 = new Color(1, 1, 1, 1);
 
     Color[] colors;
+
+    public event UnityAction onPlayerDie;
+
+    [SerializeField] private GameObject ghost;
+
     [SerializeField]
     private bool isHit = false;
     private void Awake()
@@ -34,27 +55,30 @@ public class Player : MonoBehaviour,IDamageable,IForceable
 
     public void HitDamage(int damage)
     {
-        if(!isHit)
-        {
+        if (!isHit)
             Hp -= damage;
-        }
-        
-        StartCoroutine(HitTime());
+        else
+            return;
+
+        StartCoroutine(HitTime(1));
         StartCoroutine(Blink());
     }
 
     public void TakeForce(Vector2 dir, int power)
     {
-        if(!isHit)
-        {
+        if (!isHit)
             rb.AddForce(dir * power, ForceMode2D.Impulse);
-        } 
     }
 
-    IEnumerator HitTime()
+    /// <summary>
+    /// 플레이어의 피격 판정 시간
+    /// </summary>
+    /// <param name="hitTime"></param>
+    /// <returns></returns>
+    IEnumerator HitTime(float hitTime)
     {
         isHit = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(hitTime);
         isHit = false;
     }
 
@@ -79,6 +103,23 @@ public class Player : MonoBehaviour,IDamageable,IForceable
             renderers[i].color = colors[i];
         }
 
+
+    }
+
+    [SerializeField] float dieTime;
+    public void Die()
+    {
+        ghost.SetActive(true);
+        onPlayerDie?.Invoke();
+        StartCoroutine(PlayerDie(dieTime));
+    }
+
+    IEnumerator PlayerDie(float time)
+    {
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(time);
+        Time.timeScale = 1;
+        LoadManager.LoadScene("TownScene");
 
     }
 }

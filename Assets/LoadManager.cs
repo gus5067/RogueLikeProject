@@ -27,7 +27,7 @@ public class LoadManager : MonoBehaviour
 
     IEnumerator LoadSceneRoutine(string sceneName)
     {
-        yield return new WaitForSeconds(2f);
+        yield return null;
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(nextScene);
 
@@ -35,26 +35,13 @@ public class LoadManager : MonoBehaviour
         while(true)
         {
             progressBar.value = operation.progress + 0.08f;
-            Debug.Log(operation.progress);
             yield return new WaitForSeconds(0.5f);
             if(progressBar.value >= 0.9f)
             {
+                yield return new WaitForSeconds(3f);
                 operation.allowSceneActivation = true;
                 yield break;
             }
         }
-        
-        //while (!operation.isDone)
-        //{
-        //    if (operation.progress <= 0.98f)
-        //        progressBar.value = operation.progress;
-        //    else
-        //    {
-        //        yield return new WaitForSeconds(1f);
-        //        progressBar.value = operation.progress;
-        //        operation.allowSceneActivation = true;
-        //        yield break;
-        //    }
-        //}
     }
 }

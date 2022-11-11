@@ -3187,6 +3187,7 @@ GameObject:
   - component: {fileID: 1169971237557985049}
   - component: {fileID: 8051232534239235134}
   - component: {fileID: 1381862986018970533}
+  - component: {fileID: 8598702824999834297}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -3613,6 +3614,19 @@ CompositeCollider2D:
       - {x: 2.9941463, y: -8.00001}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.01
+--- !u!114 &8598702824999834297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130977530960331357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18b7b7c99dfbafb4c8426b22233a4a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorType: 1
 --- !u!1001 &4439493798271918286
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,15 +9,25 @@ public enum Door_Type
 }
 public class DungeonDoor : MonoBehaviour
 {
-    public event UnityAction<Door_Type> onNextDungeon;
 
     public Door_Type doorType;
 
+    private string dungeon = "DungeonScene";
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            onNextDungeon.Invoke(doorType);
+            switch(doorType)
+            {
+                case Door_Type.Start:
+                    GameManager.Instance.DungeonNum--;
+                    LoadManager.LoadScene(dungeon);
+                    break;
+                case Door_Type.Exit:
+                    GameManager.Instance.DungeonNum++;
+                    LoadManager.LoadScene(dungeon);
+                    break;
+            }
         }
     }
 

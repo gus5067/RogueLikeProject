@@ -55,8 +55,7 @@ public class Player : MonoBehaviour, IDamageable, IForceable
         for(int i=0; i < renderers.Length;i++)
             colors[i] = renderers[i].color;
     }
-
-    private void Update()
+    private void FixedUpdate()
     {
         InteractWithTarget();
     }
@@ -70,7 +69,6 @@ public class Player : MonoBehaviour, IDamageable, IForceable
         StartCoroutine(HitTime(1));
         StartCoroutine(Blink());
     }
-
     public void TakeForce(Vector2 dir, int power)
     {
         if (!isHit)
@@ -132,7 +130,7 @@ public class Player : MonoBehaviour, IDamageable, IForceable
 
     public void InteractWithTarget()
     {
-        if(Input.GetKeyDown(KeyCode.F))
+        if(Input.GetKeyDown(KeyCode.F) && curTarget != null)
         {
             IInteractable interactTarget = curTarget.GetComponent<IInteractable>();
             interactTarget?.Interaction();

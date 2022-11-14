@@ -20844,6 +20844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   money: 0
+  dungeonNum: 0
 --- !u!4 &326423490
 Transform:
   m_ObjectHideFlags: 0
@@ -24037,6 +24038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae82de70ceaeb3847b466bf969b543d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPoint: {fileID: 0}
   curWeapon: {fileID: 6189395210363366775}
 --- !u!114 &6189395210363366775
 MonoBehaviour:

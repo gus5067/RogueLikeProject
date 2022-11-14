@@ -132,7 +132,7 @@ public class Player : MonoBehaviour, IDamageable, IForceable
 
     public void InteractWithTarget()
     {
-        if(Input.GetKeyDown(KeyCode.I))
+        if(Input.GetKeyDown(KeyCode.F))
         {
             IInteractable interactTarget = curTarget.GetComponent<IInteractable>();
             interactTarget?.Interaction();

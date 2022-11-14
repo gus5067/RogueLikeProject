@@ -43,16 +43,15 @@ public class ConversationController : MonoBehaviour
 
     IEnumerator conversationRoutine()
     {
+        Debug.Log("코루틴 시작");
         isConversation = true;
         for(int i =0; i < conversationData.Conversations.Length; i++)
         {
             conversationName.text = conversationData.Conversations[i].name;
             text.text = conversationData.Conversations[i].description;
-            Debug.Log("마우스 입력 전 : " + i);
             yield return new WaitforMouseDown();
-            Debug.Log("마우스 입력 후 : " + i);
+            yield return new WaitForSeconds(0.1f);
         }
-        yield return new WaitforMouseDown();
         conversationUI.SetActive(false);
         isConversation = false;
     }
@@ -65,7 +64,7 @@ public class WaitforMouseDown : CustomYieldInstruction
     {
         get
         {
-            return !Input.GetKeyDown(KeyCode.M);
+            return !Input.GetMouseButtonDown(0);
         }
     }
 

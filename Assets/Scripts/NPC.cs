@@ -5,6 +5,7 @@ using UnityEngine;
 public class NPC : MonoBehaviour, IInteractable
 {
     [SerializeField] private ConversationData conversation;
+
     public void Interaction()
     {
         if(ConversationController.Instance.conversationData == null)

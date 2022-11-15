@@ -138,6 +138,15 @@ public abstract class Monster : MonoBehaviour, IDamageable, IForceable
         }
     }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            Player player = collision.gameObject.GetComponent<Player>();
+            player?.HitDamage(damage);
+        }
+    }
+
     public virtual void Die()
     {
         if(tempCo != null)

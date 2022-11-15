@@ -14,7 +14,7 @@ public class ConversationController : MonoBehaviour
     public ConversationData conversationData;
 
     private static ConversationController instance;
-    public static ConversationController Instance
+    public static ConversationController Instance //static을 사용했지만 싱글톤은 아님
     {
         get
         {
@@ -41,7 +41,7 @@ public class ConversationController : MonoBehaviour
        
     }
 
-    IEnumerator conversationRoutine()
+    public IEnumerator conversationRoutine()
     {
         Debug.Log("코루틴 시작");
         isConversation = true;

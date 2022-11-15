@@ -1338,6 +1338,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   money: 0
+  playerHp: 20
+  playerMaxHp: 20
   dungeonNum: 0
 --- !u!4 &1736964457
 Transform:
@@ -9205,6 +9207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a06ce73052a8a4592521232b790c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curTarget: {fileID: 0}
   hp: 20
   ghost: {fileID: 6741861932666263782}
   isHit: 0

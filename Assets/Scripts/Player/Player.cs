@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -19,6 +18,7 @@ public class Player : MonoBehaviour, IDamageable, IForceable
         set
         {
             hp = value;
+            GameManager.Instance.playerHp = hp;
             if(hp <= 0)
             {
                 hp = 0;
@@ -49,6 +49,7 @@ public class Player : MonoBehaviour, IDamageable, IForceable
 
     private void Start()
     {
+        Hp = GameManager.Instance.playerHp;
         renderers = GetComponentsInChildren<SpriteRenderer>();
         colors = new Color[renderers.Length];
 
@@ -124,7 +125,7 @@ public class Player : MonoBehaviour, IDamageable, IForceable
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(time);
         Time.timeScale = 1;
-        GameManager.Instance.Money -= 5000;
+        GameManager.Instance.Money -= 50;
         if(GameManager.Instance.Money < 0)
         {
             LoadManager.LoadScene("MiningCaveScene");

@@ -11,6 +11,15 @@ public class Dungeon : MonoBehaviour
     //[SerializeField] Tilemap tileMap;
 
     //private Room[,] rooms = new Room[4, 4];
-   
+
+    private void Start()
+    {
+    //    Monster[] currentStageMonster;
+
+    //    foreach(var current in currentStageMonster)
+    //        currentStageMonster.Init()
+
+
+    }
 }
 

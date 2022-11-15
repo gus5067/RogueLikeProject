@@ -3201,6 +3201,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MinimapTrigger
       objectReference: {fileID: 0}
+    - target: {fileID: 7753975386407948230, guid: 01e09b6c806f53f4eb6b4874e0ed754d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01e09b6c806f53f4eb6b4874e0ed754d, type: 3}
 --- !u!4 &2817998356514312747 stripped
@@ -3215,6 +3219,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7110556055156099188}
     m_Modifications:
+    - target: {fileID: 1356030535249265798, guid: 5377ee83b8d2470438705bee9f9b341b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7811862460784948402, guid: 5377ee83b8d2470438705bee9f9b341b, type: 3}
       propertyPath: m_Name
       value: Slime (1)
@@ -3263,7 +3271,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5484289696857228018, guid: 5377ee83b8d2470438705bee9f9b341b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5377ee83b8d2470438705bee9f9b341b, type: 3}
 --- !u!4 &1696899751988158604 stripped
 Transform:

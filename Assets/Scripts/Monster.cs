@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Monster : MonoBehaviour, IDamageable, IForceable
+public class Monster : MonoBehaviour, IDamageable, IForceable
 {
+    [SerializeField]
+    private MonsterData data;
+    bool isGenerated = false;
     [SerializeField] private int hp;
     public int Hp
     {
@@ -31,13 +34,13 @@ public abstract class Monster : MonoBehaviour, IDamageable, IForceable
 
     private Rigidbody2D rb;
 
-    [SerializeField, Range(0f, 10f)] private float viewRadius;
+    [SerializeField] private float viewRadius;
 
     [SerializeField] private GameObject target;
 
     [SerializeField] private LayerMask layerMask;
 
-    private SpriteRenderer renderer;
+    private new SpriteRenderer renderer;
 
     private Animator anim;
 
@@ -50,26 +53,48 @@ public abstract class Monster : MonoBehaviour, IDamageable, IForceable
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        renderer = GetComponent<SpriteRenderer>();
     }
+
     private void Start()
     {
-        renderer = GetComponent<SpriteRenderer>();
+        var manager = FindObjectOfType<MonsterManager>();
+        int dungeonNum = GameManager.Instance.DungeonNum;
+        int monsterNum = Random.Range(0, manager.stageData[dungeonNum].stageMonsters.Length);
+
+        data = manager.stageData[dungeonNum].stageMonsters[monsterNum];
+    }
+
+    private void Update()
+    {
+        if (isGenerated == false)
+        {
+            Init(data);
+            return;
+        }
+        MonsterView();
+    }
+    public void Init(MonsterData monsterData)
+    {
+        isGenerated = true;
+        this.Hp = monsterData.hp;
+        this.speed = monsterData.speed;
+        this.viewRadius = monsterData.viewRadius;
+        this.damage = monsterData.damage;
+        this.renderer.sprite = monsterData.sprite;
+        if (monsterData.animator != null)
+            this.anim.runtimeAnimatorController = monsterData.animator;
+        gameObject.name = monsterData.name;
     }
     public virtual void HitDamage(int damage)
     {
         Hp -= damage;
         isOnceHit = true;
-        if(Hp > 0)
+        if (Hp > 0)
         {
             tempCo = StartCoroutine(Blink());
         }
-       
     }
-    private void Update()
-    {
-        MonsterView();
-    }
-
     IEnumerator Blink()
     {
         WaitForSeconds waitTime = new WaitForSeconds(0.2f);
@@ -88,18 +113,21 @@ public abstract class Monster : MonoBehaviour, IDamageable, IForceable
         {
             target = viewTarget.gameObject;
             FollowTarget();
-            anim.SetBool("Walk", true);
+            if (anim.runtimeAnimatorController != null)
+                anim.SetBool("Walk", true);
         }
         else
         {
             if (isOnceHit)
             {
                 FollowTarget();
-                anim.SetBool("Walk", true);
+                if (anim.runtimeAnimatorController != null)
+                    anim.SetBool("Walk", true);
             }
             else
             {
-                anim.SetBool("Walk", false);
+                if (anim.runtimeAnimatorController != null)
+                    anim.SetBool("Walk", false);
                 return;
             }
 

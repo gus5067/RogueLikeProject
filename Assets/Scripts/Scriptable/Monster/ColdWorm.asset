@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1e61a999861d0f41aa02f0868e3d46a, type: 3}
-  m_Name: TestMonster
+  m_Name: ColdWorm
   m_EditorClassIdentifier: 
-  name: TestMonster
-  hp: 15
-  speed: 2
-  viewRadius: 5
-  damage: 10
-  sprite: {fileID: 21300000, guid: da88a6bcbf1706a409007e9a0a2949b3, type: 3}
+  name: ColdWorm
+  hp: 20
+  speed: 1.5
+  viewRadius: 2
+  damage: 15
+  sprite: {fileID: 21300000, guid: 283b986b48549674ab2c6128d296ecaa, type: 3}
   animator: {fileID: 0}

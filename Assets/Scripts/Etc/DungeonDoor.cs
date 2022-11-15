@@ -20,8 +20,8 @@ public class DungeonDoor : MonoBehaviour
             switch(doorType)
             {
                 case Door_Type.Start:
-                    GameManager.Instance.DungeonNum--;
-                    LoadManager.LoadScene(dungeon);
+                    GameManager.Instance.DungeonNum = 0;
+                    LoadManager.LoadScene("TownScene");
                     break;
                 case Door_Type.Exit:
                     GameManager.Instance.DungeonNum++;

@@ -14,10 +14,7 @@ public class LoadManager : MonoBehaviour
 
     private void Start()
     {
-
         StartCoroutine(LoadSceneRoutine(nextScene));
-
-
     }
     public static void LoadScene(string sceneName)
     {
@@ -42,7 +39,7 @@ public class LoadManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             if(progressBar.value >= 0.9f)
             {
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(2f);
                 operation.allowSceneActivation = true;
                 yield break;
             }

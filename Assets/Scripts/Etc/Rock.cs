@@ -14,6 +14,8 @@ public class Rock : DestroyObject
     private float initHp;
     private int rewardMoney;
     [SerializeField]
+    private bool isRandomValue;
+    [SerializeField]
     private float rockHp;
     public float RockHp
     {
@@ -47,19 +49,22 @@ public class Rock : DestroyObject
 
     public void SetRockType()
     {
-        int num = Random.Range(0, 100);
+        if (isRandomValue)
+        {
+            int num = Random.Range(0, 100);
 
-        if (num > 90)
-        {
-            rockType = Rock_Type.Red;
-        }
-        else if (num > 60)
-        {
-            rockType = Rock_Type.Gold;
-        }
-        else
-        {
-            rockType = Rock_Type.Normal;
+            if (num > 90)
+            {
+                rockType = Rock_Type.Red;
+            }
+            else if (num > 60)
+            {
+                rockType = Rock_Type.Gold;
+            }
+            else
+            {
+                rockType = Rock_Type.Normal;
+            }
         }
 
         switch (rockType)
@@ -67,17 +72,17 @@ public class Rock : DestroyObject
             case Rock_Type.Normal:
                 render.color = Color.white;
                 rockHp = 2;
-                rewardMoney = 100;
+                rewardMoney = 50;
                 break;
             case Rock_Type.Gold:
                 render.color = Color.yellow;
-                rockHp = 5;
+                rockHp = 10;
                 rewardMoney = 500;
                 break;
             case Rock_Type.Red:
                 render.color = Color.red;
-                rockHp = 10;
-                rewardMoney = 100;
+                rockHp = 25;
+                rewardMoney = 2000;
                 break;
         }
     }

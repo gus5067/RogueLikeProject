@@ -124,7 +124,13 @@ public class Player : MonoBehaviour, IDamageable, IForceable
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(time);
         Time.timeScale = 1;
-        LoadManager.LoadScene("TownScene");
+        GameManager.Instance.Money -= 5000;
+        if(GameManager.Instance.Money < 0)
+        {
+            LoadManager.LoadScene("MiningCaveScene");
+        }
+        else
+            LoadManager.LoadScene("TownScene");
 
     }
 

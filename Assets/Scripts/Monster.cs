@@ -46,6 +46,8 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
 
     private bool isOnceHit;
 
+    private bool isAttack;
+
     Coroutine tempCo;
 
     [SerializeField] private int damage;
@@ -72,7 +74,8 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
             Init(data);
             return;
         }
-        MonsterView();
+        if (isAttack == false)
+            MonsterView();
     }
     public void Init(MonsterData monsterData)
     {
@@ -162,16 +165,12 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             Player player = collision.gameObject.GetComponent<Player>();
-            player?.HitDamage(damage);
-        }
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            Player player = collision.gameObject.GetComponent<Player>();
-            player?.HitDamage(damage);
+            if (player != null)
+            {
+                if (isAttack == false)
+                    StartCoroutine(AttackRoutine());
+                player.HitDamage(damage);
+            }
         }
     }
 
@@ -184,4 +183,10 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
         gameObject.SetActive(false);
     }
 
+    public IEnumerator AttackRoutine()
+    {
+        isAttack = true;
+        yield return new WaitForSeconds(1f);
+        isAttack = false;
+    }
 }

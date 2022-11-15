@@ -9,12 +9,12 @@ public class InventoryUnit : MonoBehaviour
 {
     public ItemData item;
 
-    public Transform icon;
+    public Transform iconTransform;
     [SerializeField] private Image slotImage;
 
     private void Start()
     {
-        icon = transform.GetChild(0).transform.GetChild(1).transform;
+        iconTransform = transform.GetChild(0).transform.GetChild(1).transform;
     }
     public void AddItem(ItemData item)
     {

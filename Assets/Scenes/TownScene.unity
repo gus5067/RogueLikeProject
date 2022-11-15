@@ -333,7 +333,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b83979d5eedeabf4bb212deedf28e418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: ef0f270959eb0384b960b698d4878cce, type: 2}
+  items:
+  - {fileID: 11400000, guid: ef0f270959eb0384b960b698d4878cce, type: 2}
+  - {fileID: 11400000, guid: bce68e36329f85645b6127c6c46a52ac, type: 2}
 --- !u!4 &94663409
 Transform:
   m_ObjectHideFlags: 0
@@ -16587,7 +16589,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b4a530f20500eb429a02b65590f7ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentInventoryUnit: {fileID: 0}
+  tempImagePos: {fileID: 0}
   target: {fileID: 0}
+  nextTarget: {fileID: 0}
 --- !u!1 &1363994888
 GameObject:
   m_ObjectHideFlags: 0

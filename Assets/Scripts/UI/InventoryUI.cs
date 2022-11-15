@@ -5,6 +5,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -14,10 +15,11 @@ public class InventoryUI : MonoBehaviour
 
     private InventoryUnit[] inventoryUnits;
 
+    [SerializeField]
     private InventoryUnit currentInventoryUnit; //현재 슬롯을 저장
 
-    private ItemData tempData; // 현재 슬롯의 데이터 임시 저장;
-
+    private ItemData tempItem; // 현재 슬롯의 데이터 임시 저장;
+    [SerializeField]
     private Transform tempImagePos;
 
     private Vector3 tempPos;
@@ -29,6 +31,9 @@ public class InventoryUI : MonoBehaviour
     [SerializeField]
     private InventoryUnit target;
 
+    [SerializeField]
+    private InventoryUnit nextTarget;
+
     private void Awake()
     {
         canvas = transform.GetComponentInParent<Canvas>();
@@ -38,8 +43,7 @@ public class InventoryUI : MonoBehaviour
 
     private void Update()
     {
-        target = UIMouseRay();
-
+        target = UIMouseRay(0);
         if(!isDrag && target != null)
         {
             OnDragBegin();
@@ -59,7 +63,7 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    public InventoryUnit UIMouseRay()
+    public InventoryUnit UIMouseRay(int i)
     {
         pointerEventData.position = Input.mousePosition;
 
@@ -67,13 +71,13 @@ public class InventoryUI : MonoBehaviour
 
         graphicRaycaster.Raycast(pointerEventData, results);
 
-        if (results.Count > 0)
+        if (results.Count > i)
         {
-            InventoryUnit targetObj = results[0].gameObject.GetComponentInParent<InventoryUnit>();
-            if (targetObj != null)
-                return targetObj;
-            else
-                return null;
+                InventoryUnit targetObj = results[i].gameObject.GetComponentInParent<InventoryUnit>();
+                if (targetObj != null)
+                    return targetObj;
+                else
+                   return null;
         }
         else
             return null;
@@ -85,8 +89,8 @@ public class InventoryUI : MonoBehaviour
         {
             isDrag = true;
             currentInventoryUnit = target;
-            tempData = currentInventoryUnit.item; //드래그 시작한 슬롯의 데이터
-            tempImagePos = currentInventoryUnit.icon;
+            tempItem = currentInventoryUnit.item; //드래그 시작한 슬롯의 데이터
+            tempImagePos = currentInventoryUnit.iconTransform;
             siblingIndex = tempImagePos.transform.GetSiblingIndex();//자식 순서 저장
             tempImagePos.transform.SetParent(canvas.transform);
             tempPos = tempImagePos.transform.position;
@@ -103,41 +107,43 @@ public class InventoryUI : MonoBehaviour
 
     public void OnDragEnd()
     {
-        if(Input.GetMouseButtonUp(0) && currentInventoryUnit != null)
+        nextTarget = UIMouseRay(1);
+        if (Input.GetMouseButtonUp(0) && currentInventoryUnit != null)
         {
+            
             tempImagePos.transform.SetParent(currentInventoryUnit.transform);
             tempImagePos.transform.SetSiblingIndex(siblingIndex);
-            if (target == null)
-            {
+            currentInventoryUnit.iconTransform.position = tempPos;
 
-                currentInventoryUnit.icon.position = tempPos;
-            }
-            else
+            if(nextTarget != null)
             {
-                SwapUnit(currentInventoryUnit, target);
+                SwapUnit(currentInventoryUnit, nextTarget);
             }
+            currentInventoryUnit = null;
         }
-        InventoryUIUpdate();
         isDrag = false;
     }
 
     public void SwapUnit(InventoryUnit curUnit, InventoryUnit targetUnit)
     {
-        if(targetUnit == null)
-        {
-            InventoryUnit tempUnit = new InventoryUnit();
+        Debug.Log(curUnit + " 과 " + targetUnit + " 스왑 실행");
 
-            tempUnit.item = curUnit.item;
-            curUnit.item = null;
-            targetUnit.item = tempUnit.item;
+        if(curUnit.item != null && targetUnit.item == null)
+        {
+            Debug.Log("if문 첫 번째" + curUnit.item + " 과 " + targetUnit.item);
+            targetUnit.AddItem(curUnit.item);
+            curUnit.RemoveItem();
+        }
+        else if(curUnit.item != null)
+        {
+            Debug.Log("if문 두 번째" + curUnit.item + " 과 " + targetUnit.item);
+            tempItem = targetUnit.item;
+            Debug.Log("if문 두 번째 temp : " + tempItem);
+            targetUnit.AddItem(curUnit.item);
+            curUnit.AddItem(tempItem);
         }
         else
-        {
-            InventoryUnit tempUnit = new InventoryUnit();
-
-            tempUnit.item = curUnit.item;
-            curUnit.item = targetUnit.item;
-            targetUnit.item = tempUnit.item;
-        }
+            Debug.Log("else문");
+        //InventoryUIUpdate();
     }
 }

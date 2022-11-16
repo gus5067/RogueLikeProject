@@ -4669,8 +4669,6 @@ GameObject:
   - component: {fileID: 6586048755421036307}
   - component: {fileID: 6586048755421036300}
   - component: {fileID: 6586048755421036301}
-  - component: {fileID: 6586048755421036308}
-  - component: {fileID: 6586048755421036309}
   m_Layer: 5
   m_Name: UnitRoot
   m_TagString: Untagged
@@ -4726,36 +4724,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6586048755421036308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6586048755421036306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae82de70ceaeb3847b466bf969b543d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitPoint: {fileID: 8860985083261279522}
-  curWeapon: {fileID: 6586048755421036309}
---- !u!114 &6586048755421036309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6586048755421036306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a671b542cea38e4eb7f8b97bfe5cbe7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitPos: {fileID: 8860985083261279525}
-  hitArea: {x: 2, y: 1}
-  damage: 5
-  power: 10
 --- !u!1 &6586048755452205149
 GameObject:
   m_ObjectHideFlags: 0
@@ -4766,7 +4734,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6586048755452205150}
   - component: {fileID: 6586048755452205151}
-  - component: {fileID: 6586048755452205217}
   m_Layer: 5
   m_Name: R_Weapon
   m_TagString: Untagged
@@ -4841,21 +4808,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6586048755452205217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6586048755452205149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc708ee3957971640ac82586994e4122, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 08dcf893bcea0eb4fb3a542c2e706644, type: 3}
-  - {fileID: 21300000, guid: 9ebaeea58bc966a429618d6b69388b55, type: 3}
 --- !u!1 &6586048755509790946
 GameObject:
   m_ObjectHideFlags: 0

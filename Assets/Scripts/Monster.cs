@@ -40,6 +40,12 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
 
     [SerializeField] private LayerMask layerMask;
 
+    [SerializeField]
+    private GameObject damageTextPrefab;
+
+    [SerializeField]
+    private Transform offsetPosition;
+
     private new SpriteRenderer renderer;
 
     private Animator anim;
@@ -91,6 +97,9 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
     }
     public virtual void HitDamage(int damage)
     {
+        GameObject damageText = Instantiate(damageTextPrefab);
+        damageText.transform.position = offsetPosition.position;
+        damageText.GetComponent<DamageText>().SetText(damage);
         Hp -= damage;
         isOnceHit = true;
         if (Hp > 0)

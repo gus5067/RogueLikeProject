@@ -45,12 +45,16 @@ public class ControllerTest : MonoBehaviour
         initScaleX = transform.localScale.x;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         Move();
         HitPointMove();
-    }
 
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            anim.SetTrigger("Attack");
+        }
+    }
     public void Move()
     {
         inputX = Input.GetAxisRaw("Horizontal");

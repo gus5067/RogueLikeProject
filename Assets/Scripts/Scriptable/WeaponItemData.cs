@@ -8,4 +8,8 @@ public class WeaponItemData : ItemData
     public string toolTip;
 
     public int attackValue;
+
+    public Vector2 hitArea;
+
+    public int power;
 }

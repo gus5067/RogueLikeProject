@@ -27,4 +27,8 @@ public class GameManager : Singleton<GameManager>//후에 제네릭 싱글톤으로 변경해
         get { return dungeonNum; }
         set { dungeonNum = value; }
     }
+
+
+
+
 }

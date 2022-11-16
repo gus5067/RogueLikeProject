@@ -54,6 +54,8 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
 
     private bool isAttack;
 
+    private bool isDie;
+
     Coroutine tempCo;
 
     [SerializeField] private int damage;
@@ -97,15 +99,19 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
     }
     public virtual void HitDamage(int damage)
     {
-        GameObject damageText = Instantiate(damageTextPrefab);
-        damageText.transform.position = offsetPosition.position;
-        damageText.GetComponent<DamageText>().SetText(damage);
-        Hp -= damage;
-        isOnceHit = true;
-        if (Hp > 0)
+        if(!isDie)
         {
-            tempCo = StartCoroutine(Blink());
+            GameObject damageText = Instantiate(damageTextPrefab);
+            damageText.transform.position = offsetPosition.position;
+            damageText.GetComponent<DamageText>().SetText(damage);
+            Hp -= damage;
+            isOnceHit = true;
+            if (Hp > 0)
+            {
+                tempCo = StartCoroutine(Blink());
+            }
         }
+        
     }
     IEnumerator Blink()
     {
@@ -148,7 +154,7 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
     }
     public void FollowTarget()
     {
-        if (target != null)
+        if (target != null && !isDie)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.transform.position, Speed * Time.deltaTime);
         }
@@ -166,12 +172,13 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
 
     public void TakeForce(Vector2 dir, int power)
     {
-        rb.AddForce(dir * power, ForceMode2D.Impulse);
+        if (!isDie)
+            rb.AddForce(dir * power, ForceMode2D.Impulse);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && !isDie)
         {
             Player player = collision.gameObject.GetComponent<Player>();
             if (player != null)
@@ -185,11 +192,13 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
 
     public virtual void Die()
     {
-        if(tempCo != null)
+        isDie = true;
+        GetComponent<Collider2D>().isTrigger = true;
+        if (tempCo != null)
         {
             StopCoroutine(tempCo);
         }
-        gameObject.SetActive(false);
+        StartCoroutine(DieRoutine());
     }
 
     public IEnumerator AttackRoutine()
@@ -197,5 +206,18 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
         isAttack = true;
         yield return new WaitForSeconds(1f);
         isAttack = false;
+    }
+
+    public IEnumerator DieRoutine()
+    {
+        float color = 1;
+        while (color > 0f)
+        {
+            renderer.color = new Color(1, 1, 1, color);
+            color -= 0.01f;
+            yield return new WaitForSeconds(0.01f);
+        }
+        gameObject.SetActive(false);
+       
     }
 }

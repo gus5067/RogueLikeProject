@@ -25,6 +25,11 @@ public class Torch : MonoBehaviour
         player = transform.parent.GetComponent<Player>();
         player.onPlayerDie += OnPlayerDie;
     }
+
+    private void Start()
+    {
+        TorchRange = GameManager.Instance.torchRange;
+    }
     public void OnPlayerDie()
     {
         StartCoroutine(torchRoutine());

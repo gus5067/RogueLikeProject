@@ -14,6 +14,15 @@ public class Servant : MonoBehaviour
     [SerializeField] private Animator anim;
     public int delayCount;
 
+    public bool isTorch;
+
+    private void OnEnable()
+    {
+        if (isTorch)
+            GameManager.Instance.torchRange = 6;
+        else
+            GameManager.Instance.torchRange = 3;
+    }
     private void Start()
     {
         initScaleX = transform.localScale.x;
@@ -51,9 +60,6 @@ public class Servant : MonoBehaviour
             transform.localScale = new Vector3(initScaleX, transform.localScale.y, transform.localScale.z);
         else if (player.position.x - transform.position.x > 0)
             transform.localScale = new Vector3(-initScaleX, transform.localScale.y, transform.localScale.z);
-
-
-
     }
 
 }

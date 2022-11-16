@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WoodSword
   m_EditorClassIdentifier: 
   name: WoodSword
-  icon: {fileID: 21300000, guid: b8135e61f8c0a5a47a84bb20035cfe30, type: 3}
+  icon: {fileID: -257869100, guid: b8135e61f8c0a5a47a84bb20035cfe30, type: 3}
   toolTip: wood Sword
   attackValue: 5
   hitArea: {x: 2, y: 1}

@@ -5,7 +5,6 @@ using TMPro;
 
 public class ConversationController : MonoBehaviour
 {
-
     [SerializeField] private GameObject conversationUI;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private TextMeshProUGUI conversationName;
@@ -38,7 +37,6 @@ public class ConversationController : MonoBehaviour
         {
             StartCoroutine(conversationRoutine());
         }
-       
     }
 
     public IEnumerator conversationRoutine()

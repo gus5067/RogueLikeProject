@@ -17,7 +17,7 @@ public class InteractHit : MonoBehaviour
     {
         if(collision.gameObject.layer == targetNum)
         {
-            player.curTarget = collision.gameObject;
+            player.CurTarget = collision.gameObject;
         }
     }
 
@@ -25,7 +25,7 @@ public class InteractHit : MonoBehaviour
     {
         if (collision.gameObject.layer == targetNum)
         {
-            player.curTarget = null;
+            player.CurTarget = null;
         }
     }
 }

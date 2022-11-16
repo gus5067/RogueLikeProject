@@ -6,8 +6,23 @@ using UnityEngine.Events;
 
 public class Player : MonoBehaviour, IDamageable, IForceable
 {
-    public GameObject curTarget;
+    [SerializeField]
+    private GameObject interactUI;
+    [SerializeField]
+    private GameObject curTarget;
 
+    public GameObject CurTarget
+    {
+        get => curTarget;
+        set
+        {
+            curTarget = value;
+            if(value == null)
+                interactUI.SetActive(false);
+            else
+                interactUI.SetActive(true);
+        }
+    }
     [SerializeField] private int hp;
     public int Hp
     {
@@ -22,7 +37,7 @@ public class Player : MonoBehaviour, IDamageable, IForceable
             if(hp <= 0)
             {
                 hp = 0;
-                Die();
+                //Die();
             }
         }
     }
@@ -115,7 +130,8 @@ public class Player : MonoBehaviour, IDamageable, IForceable
     [SerializeField] float dieTime;
     public void Die()
     {
-        ghost.SetActive(true);
+        if (ghost != null)
+            ghost.SetActive(true);
         onPlayerDie?.Invoke();
         StartCoroutine(PlayerDie(dieTime));
     }
@@ -137,9 +153,11 @@ public class Player : MonoBehaviour, IDamageable, IForceable
 
     public void InteractWithTarget()
     {
-        if(Input.GetKeyDown(KeyCode.F) && curTarget != null)
+        if(Input.GetKeyDown(KeyCode.F))
         {
-            IInteractable interactTarget = curTarget.GetComponent<IInteractable>();
+            if (CurTarget == null)
+                return;
+            IInteractable interactTarget = CurTarget.GetComponent<IInteractable>();
             interactTarget?.Interaction();
         }
     }

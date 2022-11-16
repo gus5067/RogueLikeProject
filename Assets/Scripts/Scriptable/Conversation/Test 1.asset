@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e5c1069180bd4d49b8363fc803e1ce8, type: 3}
-  m_Name: Test
+  m_Name: Test 1
   m_EditorClassIdentifier: 
   conversations:
   - name: NPC
-    description: Test1
+    description: "this is Test\t"
   - name: Player
-    description: Test2
-  - name: NPC
-    description: Final
+    description: Test End
   nextConversation: {fileID: 0}

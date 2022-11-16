@@ -50,8 +50,14 @@ public class ConversationController : MonoBehaviour
             conversationName.text = conversationData.Conversations[i].name;
             text.text = conversationData.Conversations[i].description;
             yield return new WaitforMouseDown();
-            yield return new WaitForSeconds(0.1f);//
+            yield return new WaitForSeconds(0.1f);
         }
+        if (conversationData.nextConversation != null)
+        {
+            conversationData = conversationData.nextConversation;
+            yield return StartCoroutine(conversationRoutine());
+        }
+        conversationData = null;
         conversationUI.SetActive(false);
         isConversation = false;
     }

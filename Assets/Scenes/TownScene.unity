@@ -16711,17 +16711,6 @@ Transform:
   m_Father: {fileID: 1201298243}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1294639625 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1294639625, guid: 477c78d7a9634b348b68f75e1f3749f4, type: 3}
-  m_PrefabInstance: {fileID: 1630581368}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b4a530f20500eb429a02b65590f7ec2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1363994888
 GameObject:
   m_ObjectHideFlags: 0
@@ -18272,7 +18261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6803194533962799033, guid: 477c78d7a9634b348b68f75e1f3749f4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6803194534487844504, guid: 477c78d7a9634b348b68f75e1f3749f4, type: 3}
       propertyPath: m_Enabled
@@ -18886,7 +18875,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 359d2eb43d3f44749bac547c665f632d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryUI: {fileID: 1294639625}
   items: []
 --- !u!4 &1735906237
 Transform:

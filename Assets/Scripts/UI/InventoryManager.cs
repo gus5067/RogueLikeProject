@@ -1,13 +1,13 @@
+using Cinemachine.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryManager : Singleton<InventoryManager>
 {
-    [SerializeField] InventoryUI inventoryUI;
+    public InventoryUI inventoryUI;
 
-    public List<ItemData> items = new List<ItemData>();//µ¿Àû
-
+    public List<ItemData> items = new List<ItemData>();
 
     public void AddItem(ItemData item)
     {

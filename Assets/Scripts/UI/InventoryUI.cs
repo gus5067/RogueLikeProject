@@ -39,6 +39,11 @@ public class InventoryUI : MonoBehaviour
         pointerEventData = new PointerEventData(null);
     }
 
+    private void OnEnable()
+    {
+        InventoryManager.Instance.inventoryUI = this;
+        InventoryUIUpdate();
+    }
     private void Update()
     {
         target = UIMouseRay(0);

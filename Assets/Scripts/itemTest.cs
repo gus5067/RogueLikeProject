@@ -9,8 +9,8 @@ public class itemTest : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
-            InventoryManager.Instance.AddItem(items[0]);
+            InventoryManager.Instance.AddItem(items[0], InventoryManager.Instance.items);
         if(Input.GetKeyDown(KeyCode.Alpha2))
-            InventoryManager.Instance.AddItem(items[1]);
+            InventoryManager.Instance.AddItem(items[1], InventoryManager.Instance.items);
     }
 }

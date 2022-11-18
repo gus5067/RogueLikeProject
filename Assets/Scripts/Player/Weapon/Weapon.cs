@@ -8,9 +8,6 @@ public class Weapon : MonoBehaviour
     private Transform hitPos;
 
     [SerializeField]
-    private WeaponItemData weaponItemData;
-
-    [SerializeField]
     private Sprite sprite;
 
     [SerializeField]
@@ -27,10 +24,13 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
-        WeaponInit(weaponItemData);
+        if(GameManager.Instance.curWeaponData != null)
+        {
+            WeaponSet(GameManager.Instance.curWeaponData);
+        }
     }
 
-    public void WeaponInit(WeaponItemData data)
+    public void WeaponSet(WeaponItemData data)
     {
         this.sprite = data.icon;
         rightWeapon.sprite = this.sprite;

@@ -12,12 +12,21 @@ public class InventoryUnit : MonoBehaviour
     public Transform iconTransform;
     [SerializeField] private Image slotImage;
 
+    [SerializeField] private Sprite backgroundImage;
+
     private void Start()
     {
+        if (slotImage.sprite == null)
+            slotImage.sprite = backgroundImage;
         iconTransform = transform.GetChild(0).transform.GetChild(1).transform;
     }
     public void AddItem(ItemData item)
     {
+        if (item == null)
+        {
+            RemoveItem();
+            return;
+        }
         this.item = item;
         slotImage.sprite = item.icon;
     }
@@ -25,7 +34,7 @@ public class InventoryUnit : MonoBehaviour
     public void RemoveItem()
     {
         this.item = null;
-        slotImage.sprite = null;
+        slotImage.sprite = backgroundImage;
     }
 
 }

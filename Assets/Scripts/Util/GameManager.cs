@@ -21,6 +21,8 @@ public class GameManager : Singleton<GameManager>//후에 제네릭 싱글톤으로 변경해
 
     public float torchRange;
 
+    public WeaponItemData curWeaponData;
+
     public event UnityAction<int> onMoneyChange;
 
     [SerializeField] private int dungeonNum;

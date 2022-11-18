@@ -6,22 +6,21 @@ using UnityEngine;
 public class InventoryManager : Singleton<InventoryManager>
 {
     public InventoryUI inventoryUI;
-
     public List<ItemData> items = new List<ItemData>();
 
-    public void AddItem(ItemData item)
+    public void AddItem(ItemData item, List<ItemData> itemList)
     {
-        if (items.Count >= 48)
+        if (itemList.Count >= 48)
             return;
-        items.Add(item);
+        itemList.Add(item);
         inventoryUI.InventoryUIUpdate();
     }
 
-    public void Remove(ItemData item)
+    public void Remove(ItemData item, List<ItemData> itemList)
     {
-        if (items.Count <= 0)
+        if (itemList.Count <= 0)
             return;
-        items.Remove(item);
+        itemList.Remove(item);
         inventoryUI.InventoryUIUpdate();
     }
 }

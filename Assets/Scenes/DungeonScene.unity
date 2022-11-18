@@ -915,7 +915,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPos: {fileID: 421097714}
-  weaponItemData: {fileID: 11400000, guid: ef0f270959eb0384b960b698d4878cce, type: 2}
   sprite: {fileID: 0}
   hitArea: {x: 0, y: 0}
   damage: 0
@@ -1244,6 +1243,7 @@ MonoBehaviour:
   playerHp: 100
   playerMaxHp: 100
   torchRange: 3
+  curWeaponData: {fileID: 11400000, guid: ef0f270959eb0384b960b698d4878cce, type: 2}
   dungeonNum: 0
 --- !u!4 &1736964457
 Transform:

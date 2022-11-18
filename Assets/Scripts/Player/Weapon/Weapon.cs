@@ -22,12 +22,15 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private SpriteRenderer rightWeapon;
 
+    [SerializeField]
+    private WeaponItemData defaultWeapon;
+
     private void Start()
     {
-        if(GameManager.Instance.curWeaponData != null)
-        {
-            WeaponSet(GameManager.Instance.curWeaponData);
-        }
+        if (EquipManager.Instance.curWeaponData != null)
+            WeaponSet(EquipManager.Instance.curWeaponData);
+        else
+            WeaponSet(defaultWeapon);
     }
 
     public void WeaponSet(WeaponItemData data)
@@ -35,7 +38,7 @@ public class Weapon : MonoBehaviour
         this.sprite = data.icon;
         rightWeapon.sprite = this.sprite;
         this.hitArea = data.hitArea;
-        this.damage = data.attackValue;
+        this.damage = data.value;
         this.power = data.power;
     }
 
@@ -44,11 +47,13 @@ public class Weapon : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapBoxAll(hitPos.transform.position, hitArea, 0f);
         if (colliders.Length > 0)
         {
+           
             foreach (var col in colliders)
             {
-                Monster mons = col.GetComponent<Monster>();
-                mons?.HitDamage(damage);
-                mons?.TakeForce((col.transform.position - transform.position).normalized, power);
+                Monster target = null;
+                target = col.GetComponent<Monster>();
+                target?.HitDamage(damage);
+                target?.TakeForce((col.transform.position - transform.position).normalized, power);
             }
         }
     }

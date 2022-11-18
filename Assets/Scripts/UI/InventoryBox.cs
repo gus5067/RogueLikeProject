@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class InventoryBox : MonoBehaviour,IInteractable
 {
-    [SerializeField] GameObject inventoryUI;
+    [SerializeField] GameObject[] inventoryUI;
 
+    bool boxInteract = false;
     public void Interaction()
     {
-        inventoryUI.SetActive(!inventoryUI.activeSelf);
+        foreach(GameObject obj in inventoryUI)
+        {
+            obj.SetActive(!boxInteract);
+        }
+        boxInteract = !boxInteract;
     }
 }

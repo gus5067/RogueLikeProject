@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ed38a8d164c5a49976c98e95c46e9c, type: 3}
   m_Name: IronSword
   m_EditorClassIdentifier: 
+  type: 0
   name: Iron Sword
   icon: {fileID: 21300000, guid: df96032537d4c482e9b20c674c73dc45, type: 3}
   toolTip: iron sword
-  attackValue: 20
+  value: 15
   hitArea: {x: 2, y: 1}
-  power: 10
+  power: 5

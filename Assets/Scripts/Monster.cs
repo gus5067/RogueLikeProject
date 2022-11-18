@@ -115,7 +115,7 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
     }
     IEnumerator Blink()
     {
-        WaitForSeconds waitTime = new WaitForSeconds(0.2f);
+        WaitForSeconds waitTime = new(0.2f);
 
         renderer.color = new Color(1, 0, 0, 0.5f);
 

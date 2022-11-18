@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ed38a8d164c5a49976c98e95c46e9c, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: 
+  type: 0
   name: Axe
   icon: {fileID: 21300000, guid: 08dcf893bcea0eb4fb3a542c2e706644, type: 3}
   toolTip: itsAxe
-  attackValue: 15
+  value: 18
   hitArea: {x: 2, y: 1}
   power: 10

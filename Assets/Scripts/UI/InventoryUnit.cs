@@ -7,7 +7,9 @@ using UnityEngine.UI;
 
 public class InventoryUnit : MonoBehaviour
 {
-    public ItemData item;
+    [SerializeField]
+    protected ItemData item;
+    public virtual ItemData Item { get { return item; } set { item = value; } }
 
     public Transform iconTransform;
     [SerializeField] private Image slotImage;
@@ -27,13 +29,13 @@ public class InventoryUnit : MonoBehaviour
             RemoveItem();
             return;
         }
-        this.item = item;
+        this.Item = item;
         slotImage.sprite = item.icon;
     }
 
     public void RemoveItem()
     {
-        this.item = null;
+        this.Item = null;
         slotImage.sprite = backgroundImage;
     }
 

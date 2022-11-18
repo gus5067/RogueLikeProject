@@ -21,7 +21,6 @@ public class DamageText : MonoBehaviour
     private void Start()
     {
         StartCoroutine(destroyRoutine());
-        SetText(10);
     }
     private void Update()
     {

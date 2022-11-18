@@ -10,7 +10,7 @@ public class GateKeeper : NPC
 
     private void Awake()
     {
-        GameManager.Instance.onMoneyChange += CheckPlayerMoney;
+        GameManager.Instance.OnMoneyChange += CheckPlayerMoney;
     }
 
 

@@ -7,7 +7,7 @@ public class WeaponItemData : ItemData
 {
     public string toolTip;
 
-    public int attackValue;
+    public int value;
 
     public Vector2 hitArea;
 

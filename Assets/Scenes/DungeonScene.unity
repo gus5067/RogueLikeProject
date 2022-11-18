@@ -920,6 +920,7 @@ MonoBehaviour:
   damage: 0
   power: 0
   rightWeapon: {fileID: 2015442820}
+  defaultWeapon: {fileID: 11400000, guid: ef0f270959eb0384b960b698d4878cce, type: 2}
 --- !u!1 &1449533843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1243,7 +1244,6 @@ MonoBehaviour:
   playerHp: 100
   playerMaxHp: 100
   torchRange: 3
-  curWeaponData: {fileID: 11400000, guid: ef0f270959eb0384b960b698d4878cce, type: 2}
   dungeonNum: 0
 --- !u!4 &1736964457
 Transform:

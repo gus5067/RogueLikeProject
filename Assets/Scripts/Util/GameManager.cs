@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager>//후에 제네릭 싱글톤으로 변경해
         set
         {
             money = value;
-            onMoneyChange?.Invoke(money);
+            OnMoneyChange?.Invoke(money);
         }
     }
 
@@ -21,9 +21,7 @@ public class GameManager : Singleton<GameManager>//후에 제네릭 싱글톤으로 변경해
 
     public float torchRange;
 
-    public WeaponItemData curWeaponData;
-
-    public event UnityAction<int> onMoneyChange;
+    public event UnityAction<int> OnMoneyChange;
 
     [SerializeField] private int dungeonNum;
     public int DungeonNum

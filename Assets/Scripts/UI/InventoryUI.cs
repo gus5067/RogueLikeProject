@@ -14,7 +14,7 @@ public class InventoryUI : MonoBehaviour
     private PointerEventData pointerEventData;
 
     private InventoryUnit[] inventoryUnits;
-    private EquipmentUnit[] equipmentUnits;
+    
     [SerializeField]
     private InventoryUnit currentInventoryUnit; //현재 슬롯을 저장
 
@@ -64,14 +64,14 @@ public class InventoryUI : MonoBehaviour
         for (int i = 0; i < inventoryUnits.Length; i++)
         {
             if (i < InventoryManager.Instance.items.Count)
-                inventoryUnits[i].item = InventoryManager.Instance.items[i];
+                inventoryUnits[i].Item = InventoryManager.Instance.items[i];
             else
-                inventoryUnits[i].item = null;
+                inventoryUnits[i].Item = null;
         }
 
         foreach (InventoryUnit unit in inventoryUnits)
         {
-            unit.AddItem(unit.item);
+            unit.AddItem(unit.Item);
         }
     }
 
@@ -79,7 +79,7 @@ public class InventoryUI : MonoBehaviour
     {
         pointerEventData.position = Input.mousePosition;
 
-        List<RaycastResult> results = new List<RaycastResult>();
+        List<RaycastResult> results = new();
 
         graphicRaycaster.Raycast(pointerEventData, results);
 
@@ -97,11 +97,11 @@ public class InventoryUI : MonoBehaviour
 
     public void OnDragBegin()
     {
-        if(target.item != null && Input.GetMouseButtonDown(0))
+        if(target.Item != null && Input.GetMouseButtonDown(0))
         {
             isDrag = true;
             currentInventoryUnit = target;
-            tempItem = currentInventoryUnit.item; //드래그 시작한 슬롯의 데이터
+            tempItem = currentInventoryUnit.Item; //드래그 시작한 슬롯의 데이터
             tempImagePos = currentInventoryUnit.iconTransform;
             siblingIndex = tempImagePos.transform.GetSiblingIndex();//자식 순서 저장
             tempImagePos.transform.SetParent(canvas.transform);
@@ -130,7 +130,7 @@ public class InventoryUI : MonoBehaviour
             if (nextTarget != null)
             {
                 if (nextTarget is EquipmentUnit)
-                    SwapUnit(currentInventoryUnit, (EquipmentUnit)nextTarget, tempItem.type);
+                    SwapUnit(currentInventoryUnit, nextTarget as EquipmentUnit, tempItem.type);
                 else
                     SwapUnit(currentInventoryUnit, nextTarget);
             }
@@ -143,15 +143,15 @@ public class InventoryUI : MonoBehaviour
     {
         Debug.Log(curUnit + " 과 " + targetUnit + " 스왑 실행");
 
-        if(curUnit.item != null && targetUnit.item == null)
+        if(curUnit.Item != null && targetUnit.Item == null)
         {
-            targetUnit.AddItem(curUnit.item);
+            targetUnit.AddItem(curUnit.Item);
             curUnit.RemoveItem(); 
         }
-        else if(curUnit.item != null)
+        else if(curUnit.Item != null)
         {
-            tempItem = targetUnit.item;
-            targetUnit.AddItem(curUnit.item);
+            tempItem = targetUnit.Item;
+            targetUnit.AddItem(curUnit.Item);
             curUnit.AddItem(tempItem);
         }
     }
@@ -163,20 +163,20 @@ public class InventoryUI : MonoBehaviour
         if (targetUnit.slotType != type)
             return;
 
-        if (targetUnit.item == null)//타겟 빈칸, 현재 아이템 있음
+        if (targetUnit.Item == null)//타겟 빈칸, 현재 아이템 있음
         {
             Debug.Log("첫 번째 분기");
-            if (curUnit.item == null)
+            if (curUnit.Item == null)
                 return;
-            targetUnit.AddItem(curUnit.item);
-            InventoryManager.Instance.Remove(curUnit.item, InventoryManager.Instance.items);
+            targetUnit.AddItem(curUnit.Item);
+            InventoryManager.Instance.Remove(curUnit.Item, InventoryManager.Instance.items);
         }
-        else if (curUnit.item != null)//타겟에 아이템 있음, 현재 아이템 있음
+        else if (curUnit.Item != null)//타겟에 아이템 있음, 현재 아이템 있음
         {
             Debug.Log("두 번째 분기");
-            tempItem = targetUnit.item; //temp에 장비템 보관
-            targetUnit.AddItem(curUnit.item);//장비칸 데이터 변경
-            InventoryManager.Instance.Remove(curUnit.item, InventoryManager.Instance.items);// 인벤토리 창 템 지우기
+            tempItem = targetUnit.Item; //temp에 장비템 보관
+            targetUnit.AddItem(curUnit.Item);//장비칸 데이터 변경
+            InventoryManager.Instance.Remove(curUnit.Item, InventoryManager.Instance.items);// 인벤토리 창 템 지우기
             InventoryManager.Instance.AddItem(tempItem, InventoryManager.Instance.items);
         }
     }

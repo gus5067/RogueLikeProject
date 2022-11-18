@@ -6,7 +6,7 @@ using UnityEngine;
 public class InventoryManager : Singleton<InventoryManager>
 {
     public InventoryUI inventoryUI;
-    public List<ItemData> items = new();
+    public List<ItemData> items = new List<ItemData>();
     public void AddItem(ItemData item, List<ItemData> itemList)
     {
         if (itemList.Count >= 48)

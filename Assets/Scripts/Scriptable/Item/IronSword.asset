@@ -15,7 +15,17 @@ MonoBehaviour:
   type: 0
   name: Iron Sword
   icon: {fileID: 21300000, guid: df96032537d4c482e9b20c674c73dc45, type: 3}
-  toolTip: iron sword
+  price: 80
+  toolTip: 'IRON SWORD
+
+    Pirce : 80
+
+    DMAGE : 15
+
+    RANGE : 2
+
+    POWER
+    : 5'
   value: 15
   hitArea: {x: 2, y: 1}
   power: 5

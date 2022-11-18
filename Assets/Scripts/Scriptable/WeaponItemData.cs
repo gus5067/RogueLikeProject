@@ -5,8 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ItemData/Weapon")]
 public class WeaponItemData : ItemData
 {
-    public string toolTip;
-
     public int value;
 
     public Vector2 hitArea;

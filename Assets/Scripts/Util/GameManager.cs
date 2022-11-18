@@ -23,6 +23,8 @@ public class GameManager : Singleton<GameManager>//후에 제네릭 싱글톤으로 변경해
 
     public event UnityAction<int> OnMoneyChange;
 
+    public int progressNum;
+
     [SerializeField] private int dungeonNum;
     public int DungeonNum
     {

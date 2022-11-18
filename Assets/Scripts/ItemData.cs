@@ -13,5 +13,7 @@ public abstract class ItemData : ScriptableObject
     public ItemType type;
     public new string name;
     public Sprite icon;
-
+    public int price;
+    [TextArea]
+    public string toolTip;
 }

@@ -5,8 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ItemData/Armor")]
 public class ArmorItemData : ItemData
 {
-    public string toolTip;
 
-    public int value;
+    public int defendValue;
 
 }

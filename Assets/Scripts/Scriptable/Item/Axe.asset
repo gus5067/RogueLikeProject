@@ -15,7 +15,16 @@ MonoBehaviour:
   type: 0
   name: Axe
   icon: {fileID: 21300000, guid: 08dcf893bcea0eb4fb3a542c2e706644, type: 3}
-  toolTip: itsAxe
+  price: 100
+  toolTip: 'AXE
+
+    Pirce : 100
+
+    DMAGE : 18
+
+    RANGE : 2
+
+    POWER : 10'
   value: 18
   hitArea: {x: 2, y: 1}
   power: 10

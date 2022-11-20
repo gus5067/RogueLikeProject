@@ -37,7 +37,7 @@ public class Player : MonoBehaviour, IDamageable, IForceable
             if(hp <= 0)
             {
                 hp = 0;
-                //Die();
+                Die();
             }
         }
     }

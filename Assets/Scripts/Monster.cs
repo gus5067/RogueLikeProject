@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Moster_AttackType
+{
+    Normal, Fire, Ice
+}
 public class Monster : MonoBehaviour, IDamageable, IForceable
 {
     [SerializeField]
@@ -59,6 +63,8 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
     Coroutine tempCo;
 
     [SerializeField] private int damage;
+
+    private Moster_AttackType attack_type;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -93,6 +99,7 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
         this.viewRadius = monsterData.viewRadius;
         this.damage = monsterData.damage;
         this.renderer.sprite = monsterData.sprite;
+        this.attack_type = monsterData.attackType;
         if (monsterData.animator != null)
             this.anim.runtimeAnimatorController = monsterData.animator;
         gameObject.name = monsterData.name;
@@ -183,13 +190,48 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
             Player player = collision.gameObject.GetComponent<Player>();
             if (player != null)
             {
+                if (isAttack == true)
+                    return;
                 if (isAttack == false)
                     StartCoroutine(AttackRoutine());
-                player.HitDamage(damage);
+                MonsterAttack(player);
             }
         }
     }
 
+    public void MonsterAttack(Player player)
+    {
+        switch (attack_type)
+        {
+            case Moster_AttackType.Normal:
+                player.HitDamage(damage);
+                break;
+            case Moster_AttackType.Fire:
+                StartCoroutine(FireAttack(player));
+                break;
+            case Moster_AttackType.Ice:
+                StartCoroutine(IceAttack(player));
+                break;
+        }
+    }
+
+    IEnumerator FireAttack(Player player)
+    {
+        for(int i = 0; i< 3; i++)
+        {
+            player.HitDamage(damage / 2);
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    IEnumerator IceAttack(Player player)
+    {
+        player.HitDamage(damage);
+        float temp = player.gameObject.GetComponent<ControllerTest>().Speed;
+        player.gameObject.GetComponent<ControllerTest>().Speed = 0f;
+        yield return new WaitForSeconds(1.5f);
+        player.gameObject.GetComponent<ControllerTest>().Speed = temp;
+    }
     public virtual void Die()
     {
         isDie = true;

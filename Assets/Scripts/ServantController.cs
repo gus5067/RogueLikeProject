@@ -10,10 +10,7 @@ public class ServantController : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < ServantManager.Instance.isServantActivate.Length; i++)
-        {
-            if (ServantManager.Instance.isServantActivate[i])
-                servants[i].SetActive(true);
-        }
+        if (EquipManager.Instance.curServantData != null)
+            servants[EquipManager.Instance.curServantData.servantNum].SetActive(true);
     }
 }

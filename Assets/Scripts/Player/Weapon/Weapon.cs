@@ -13,8 +13,7 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private Vector2 hitArea;
 
-    [SerializeField]
-    private int damage;
+    public int damage;
 
     [SerializeField]
     private int power;
@@ -28,7 +27,7 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private GameObject weaponSlash;
 
-    private void Start()
+    private void OnEnable()
     {
         if (EquipManager.Instance.curWeaponData != null)
             WeaponSet(EquipManager.Instance.curWeaponData);

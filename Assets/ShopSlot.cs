@@ -22,6 +22,17 @@ public class ShopSlot : MonoBehaviour
     {
         shopSlotData = itemData;
         image.sprite = itemData.icon;
+
+        if(itemData is ServantData)
+        {
+            ServantData servant = itemData as ServantData;
+            if (ServantManager.Instance.isServantActivate[servant.servantNum] == true)
+            {
+                gameObject.GetComponent<Button>().interactable = false;
+            }
+            else
+                gameObject.GetComponent<Button>().interactable = true;
+        }
     }
 
     public void Purchase()
@@ -30,6 +41,12 @@ public class ShopSlot : MonoBehaviour
             return;
         GameManager.Instance.Money -= shopSlotData.price;
         InventoryManager.Instance.AddItem(shopSlotData, InventoryManager.Instance.items);
+        if(shopSlotData is ServantData)
+        {
+            ServantData servant = shopSlotData as ServantData;
+            ServantManager.Instance.isServantActivate[servant.servantNum] = true;
+            gameObject.GetComponent<Button>().interactable = false;
+        }
     }
 
     public void ShowTooltip()

@@ -15518,9 +15518,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a06ce73052a8a4592521232b790c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerState: 0
+  isNormalState: 1
   interactUI: {fileID: 1074843535}
   curTarget: {fileID: 0}
   hp: 0
+  frozenVfx: {fileID: 0}
+  burnVfx: {fileID: 0}
   ghost: {fileID: 0}
   isHit: 0
   dieTime: 0
@@ -19615,9 +19619,9 @@ MonoBehaviour:
   - {fileID: 5014825651843716596}
   - {fileID: 5014825651960062525}
   shopItems:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: f48496afe15b7354b84edde425f03e85, type: 2}
+  - {fileID: 11400000, guid: e854308ceb8f67748a211c4295f26cb7, type: 2}
+  - {fileID: 11400000, guid: 16fcf234334b02947b26ca85e254442b, type: 2}
 --- !u!212 &1794295905
 SpriteRenderer:
   m_ObjectHideFlags: 0

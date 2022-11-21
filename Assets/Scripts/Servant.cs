@@ -11,17 +11,14 @@ public class Servant : MonoBehaviour
     float initScaleX;
     private Vector3 followPos;
 
+    [SerializeField] private float torchValue;
+
     [SerializeField] private Animator anim;
     public int delayCount;
 
-    public bool isTorch;
-
     private void OnEnable()
     {
-        if (isTorch)
-            GameManager.Instance.torchRange = 6;
-        else
-            GameManager.Instance.torchRange = 3;
+        GameManager.Instance.torchRange = torchValue;
     }
     private void Start()
     {

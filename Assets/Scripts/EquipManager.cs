@@ -6,9 +6,9 @@ public class EquipManager : Singleton<EquipManager>
 {
     public WeaponItemData curWeaponData;
     public ArmorItemData curArmorData;
+    public ServantData curServantData;
     public void SetEquip(ItemData item)
     {
-        Debug.Log("ÇÔ¼ö ½ÇÇàµÊ");
         switch (item.type)
         {
             case ItemType.Weapon:
@@ -16,6 +16,9 @@ public class EquipManager : Singleton<EquipManager>
                 break;
             case ItemType.Armor:
                 curArmorData = item as ArmorItemData;
+                break;
+            case ItemType.Servant:
+                curServantData = item as ServantData;
                 break;
         }
     }

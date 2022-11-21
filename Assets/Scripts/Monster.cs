@@ -60,6 +60,8 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
 
     private bool isDie;
 
+    private AudioSource au;
+
     Coroutine tempCo;
 
     [SerializeField] private int damage;
@@ -67,6 +69,7 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
     private Moster_AttackType attack_type;
     private void Awake()
     {
+        au = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         renderer = GetComponent<SpriteRenderer>();
@@ -95,6 +98,8 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
     public void Init(MonsterData monsterData)
     {
         isGenerated = true;
+        this.au.clip = monsterData.audioClip;
+        au.Play();
         this.Hp = monsterData.hp;
         this.speed = monsterData.speed;
         this.viewRadius = monsterData.viewRadius;

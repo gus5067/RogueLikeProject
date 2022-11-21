@@ -7,8 +7,9 @@ public class Servant_Dealer : Servant
     [SerializeField]
     private Weapon playerWeapon;
 
-    private void Start()
+    private new void Start()
     {
+        base.Start();
         playerWeapon.damage *= 2;
     }
 }

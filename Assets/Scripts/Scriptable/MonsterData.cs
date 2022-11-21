@@ -16,5 +16,6 @@ public class MonsterData : ScriptableObject
     public Sprite sprite;
     public AnimatorController animator;
     public Moster_AttackType attackType;
+    public AudioClip audioClip;
 
 }

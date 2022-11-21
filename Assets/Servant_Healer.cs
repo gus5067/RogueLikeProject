@@ -9,8 +9,9 @@ public class Servant_Healer : Servant
     [SerializeField] private int healCount;
     [SerializeField] private int healTime;
 
-    private void Start()
+    private new void Start()
     {
+        base.Start();
         StartCoroutine(HealRoutine());
     }
     IEnumerator HealRoutine()

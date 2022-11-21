@@ -16,17 +16,16 @@ public class Servant : MonoBehaviour
     [SerializeField] private Animator anim;
     public int delayCount;
 
-    private void OnEnable()
+    public void OnEnable()
     {
         GameManager.Instance.torchRange = torchValue;
     }
-    private void Start()
+    public void Start()
     {
         initScaleX = transform.localScale.x;
         transform.position = player.position + Vector3.up;
     }
-
-    private void Update()
+    public void FixedUpdate()
     {
         nextPosition();
         Follow();

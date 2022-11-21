@@ -39,9 +39,14 @@ public class ShopSlot : MonoBehaviour
     {
         if (InventoryManager.Instance.items.Count >= 48)
             return;
-        GameManager.Instance.Money -= shopSlotData.price;
+
+        if (GameManager.Instance.Money >= shopSlotData.price)
+            GameManager.Instance.Money -= shopSlotData.price;
+        else
+            return;
+
         InventoryManager.Instance.AddItem(shopSlotData, InventoryManager.Instance.items);
-        if(shopSlotData is ServantData)
+        if (shopSlotData is ServantData)
         {
             ServantData servant = shopSlotData as ServantData;
             ServantManager.Instance.isServantActivate[servant.servantNum] = true;

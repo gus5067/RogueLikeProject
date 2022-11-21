@@ -547,7 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5706e73b4f57ef54db6445d5d4f010f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isServantActivate: 00
+  isServantActivate: 000000
 --- !u!4 &812147570
 Transform:
   m_ObjectHideFlags: 0

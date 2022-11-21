@@ -209,30 +209,14 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
                 player.HitDamage(damage);
                 break;
             case Moster_AttackType.Fire:
-                StartCoroutine(FireAttack(player));
+                player.HitDamage(damage);
+                player.PlayerState = PlayerState.Burn;
                 break;
             case Moster_AttackType.Ice:
-                StartCoroutine(IceAttack(player));
+                player.HitDamage(damage);
+                player.PlayerState = PlayerState.Frozen;
                 break;
         }
-    }
-
-    IEnumerator FireAttack(Player player)
-    {
-        for(int i = 0; i< 3; i++)
-        {
-            player.HitDamage(damage / 2);
-            yield return new WaitForSeconds(1f);
-        }
-    }
-
-    IEnumerator IceAttack(Player player)
-    {
-        player.HitDamage(damage);
-        float temp = player.gameObject.GetComponent<ControllerTest>().Speed;
-        player.gameObject.GetComponent<ControllerTest>().Speed = 0f;
-        yield return new WaitForSeconds(1.5f);
-        player.gameObject.GetComponent<ControllerTest>().Speed = temp;
     }
     public virtual void Die()
     {

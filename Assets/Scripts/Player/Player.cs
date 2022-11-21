@@ -3,9 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
-public class Player : MonoBehaviour, IDamageable, IForceable
+public enum PlayerState
 {
+    Normal, Frozen, Burn
+}
+public class Player : MonoBehaviour, IDamageable
+{
+    [SerializeField]
+    private PlayerState playerState;
+    public PlayerState PlayerState
+    { 
+        get => playerState;
+        set
+        {
+            if (isNormalState)
+            {
+                playerState = value;
+                ChangeState(value);
+            }
+               
+        }
+    }
+    public bool isNormalState = true;
     [SerializeField]
     private GameObject interactUI;
     [SerializeField]
@@ -46,13 +65,12 @@ public class Player : MonoBehaviour, IDamageable, IForceable
 
     private SpriteRenderer[] renderers;
 
-    Color color1 = new Color(1, 1, 1, 0);
-    Color color2 = new Color(1, 1, 1, 1);
-
     Color[] colors;
 
     public event UnityAction onPlayerDie;
 
+    [SerializeField] private GameObject frozenVfx;
+    [SerializeField] private GameObject burnVfx;
     [SerializeField] private GameObject ghost;
 
     [SerializeField]
@@ -85,17 +103,48 @@ public class Player : MonoBehaviour, IDamageable, IForceable
         StartCoroutine(HitTime(1));
         StartCoroutine(Blink());
     }
-    public void TakeForce(Vector2 dir, int power)
+
+    public void ChangeState(PlayerState state)
     {
-        if (!isHit)
-            rb.AddForce(dir * power, ForceMode2D.Impulse);
+        switch (state)
+        {
+            case PlayerState.Frozen:
+                StartCoroutine(FrozenState());
+                break;
+            case PlayerState.Burn:
+                StartCoroutine(BurnState());
+                break;
+        }
     }
 
-    /// <summary>
-    /// 플레이어의 피격 판정 시간
-    /// </summary>
-    /// <param name="hitTime"></param>
-    /// <returns></returns>
+    IEnumerator FrozenState()
+    {
+        isNormalState = false;
+        float temp = gameObject.GetComponent<ControllerTest>().Speed;
+        frozenVfx.SetActive(true);
+        gameObject.GetComponent<ControllerTest>().Speed = 0f;
+        yield return new WaitForSeconds(1f);
+        gameObject.GetComponent<ControllerTest>().Speed = temp;
+        isNormalState = true;
+        PlayerState = PlayerState.Normal;
+        frozenVfx.SetActive(false);
+    }
+
+    IEnumerator BurnState()
+    {
+        isNormalState = false;
+        burnVfx.SetActive(true);
+        for (int i = 0; i < 3; i++)
+        {
+            this.HitDamage(GameManager.Instance.PlayerHp / 5);
+            yield return new WaitForSeconds(0.2f);
+        }
+        isNormalState = true;
+        burnVfx.SetActive(false);
+        PlayerState = PlayerState.Normal;
+
+    }
+
     IEnumerator HitTime(float hitTime)
     {
         isHit = true;
@@ -123,13 +172,13 @@ public class Player : MonoBehaviour, IDamageable, IForceable
         {
             renderers[i].color = colors[i];
         }
-
-
     }
 
     [SerializeField] float dieTime;
     public void Die()
     {
+        burnVfx.SetActive(false);
+        frozenVfx.SetActive(false);
         if (ghost != null)
             ghost.SetActive(true);
         onPlayerDie?.Invoke();

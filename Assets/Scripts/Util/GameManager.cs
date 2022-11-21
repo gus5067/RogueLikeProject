@@ -12,17 +12,27 @@ public class GameManager : Singleton<GameManager>//후에 제네릭 싱글톤으로 변경해
         set
         {
             money = value;
-            OnMoneyChange?.Invoke(money);
+            OnChangeMoney?.Invoke(money);
         }
     }
+    [SerializeField]
+    private int playerHp;
+    public int PlayerHp
+    {
+        get => playerHp;
 
-    public int playerHp;
+        set
+        {
+            playerHp = value;
+            OnChangeHp?.Invoke(playerHp);
+        }
+    }
     public int playerMaxHp;
-
+    public int axeDamage;
     public float torchRange;
 
-    public event UnityAction<int> OnMoneyChange;
-
+    public event UnityAction<int> OnChangeMoney;
+    public event UnityAction<int> OnChangeHp;
     public int progressNum;
 
     [SerializeField] private int dungeonNum;

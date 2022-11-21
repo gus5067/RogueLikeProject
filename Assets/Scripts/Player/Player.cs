@@ -33,7 +33,7 @@ public class Player : MonoBehaviour, IDamageable, IForceable
         set
         {
             hp = value;
-            GameManager.Instance.playerHp = hp;
+            GameManager.Instance.PlayerHp = hp;
             if(hp <= 0)
             {
                 hp = 0;
@@ -64,7 +64,7 @@ public class Player : MonoBehaviour, IDamageable, IForceable
 
     private void Start()
     {
-        Hp = GameManager.Instance.playerHp;
+        Hp = GameManager.Instance.PlayerHp;
         renderers = GetComponentsInChildren<SpriteRenderer>();
         colors = new Color[renderers.Length];
 
@@ -141,8 +141,8 @@ public class Player : MonoBehaviour, IDamageable, IForceable
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(time);
         Time.timeScale = 1;
-        GameManager.Instance.Money -= 50;
-        if(GameManager.Instance.Money < 0)
+        GameManager.Instance.Money -= 100;
+        if(GameManager.Instance.Money < -1000)
         {
             LoadManager.LoadScene("MiningCaveScene");
         }

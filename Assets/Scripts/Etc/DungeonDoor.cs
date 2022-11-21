@@ -24,6 +24,11 @@ public class DungeonDoor : MonoBehaviour
                     LoadManager.LoadScene("TownScene");
                     break;
                 case Door_Type.Exit:
+                    if (GameManager.Instance.DungeonNum >= 5)
+                    {
+                        LoadManager.LoadScene("TownScene");
+                        return;
+                    }
                     GameManager.Instance.DungeonNum++;
                     LoadManager.LoadScene(dungeon);
                     break;

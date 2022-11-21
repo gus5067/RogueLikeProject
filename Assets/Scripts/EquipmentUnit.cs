@@ -7,8 +7,6 @@ public class EquipmentUnit : InventoryUnit
 {
     public ItemType slotType;
 
-    public ItemData preItem;
-
     public override ItemData Item
     {
         get => base.Item;
@@ -18,7 +16,20 @@ public class EquipmentUnit : InventoryUnit
             base.Item = value;
             EquipManager.Instance.SetEquip(base.Item);
         }
+    }
 
-
+    private void OnEnable()
+    {
+        switch (slotType)
+        {
+            case ItemType.Weapon:
+                if (EquipManager.Instance.curWeaponData != null)
+                    AddItem(EquipManager.Instance.curWeaponData);
+                break;
+            case ItemType.Armor:
+                if (EquipManager.Instance.curArmorData != null)
+                    AddItem(EquipManager.Instance.curArmorData);
+                break;
+        }
     }
 }

@@ -77,8 +77,9 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
         var manager = FindObjectOfType<MonsterManager>();
         int dungeonNum = GameManager.Instance.DungeonNum;
         int monsterNum = Random.Range(0, manager.stageData[dungeonNum].stageMonsters.Length);
+        if(data == null)
+            data = manager.stageData[dungeonNum].stageMonsters[monsterNum];
 
-        data = manager.stageData[dungeonNum].stageMonsters[monsterNum];
     }
 
     private void Update()
@@ -118,7 +119,6 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
                 tempCo = StartCoroutine(Blink());
             }
         }
-        
     }
     IEnumerator Blink()
     {
@@ -185,8 +185,10 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && !isDie)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            if (isDie)
+                return;
             Player player = collision.gameObject.GetComponent<Player>();
             if (player != null)
             {
@@ -235,6 +237,7 @@ public class Monster : MonoBehaviour, IDamageable, IForceable
     public virtual void Die()
     {
         isDie = true;
+        GameManager.Instance.Money += (Random.Range(0, 200) * GameManager.Instance.DungeonNum);
         GetComponent<Collider2D>().isTrigger = true;
         if (tempCo != null)
         {

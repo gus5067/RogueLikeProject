@@ -33,7 +33,7 @@ public class ControllerTest : MonoBehaviour
     float inputX;
     float inputY;
     float initScaleX;
-
+    [SerializeField] private bool attackCoolTime;
     [SerializeField] RectTransform hitPoint;
 
     private void Awake()
@@ -52,8 +52,17 @@ public class ControllerTest : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            anim.SetTrigger("Attack");
+            if (attackCoolTime)
+                return;
+           StartCoroutine(AttackRoutine());
         }
+    }
+    IEnumerator AttackRoutine()
+    {
+        attackCoolTime = true;
+        anim.SetTrigger("Attack");
+        yield return new WaitForSeconds(0.5f);
+        attackCoolTime = false;
     }
     public void Move()
     {

@@ -12,7 +12,8 @@ public class InventoryManager : Singleton<InventoryManager>
         if (itemList.Count >= 48)
             return;
         itemList.Add(item);
-        inventoryUI.InventoryUIUpdate();
+        if (inventoryUI != null)
+            inventoryUI.InventoryUIUpdate();
     }
 
     public void Remove(ItemData item, List<ItemData> itemList)
@@ -20,6 +21,7 @@ public class InventoryManager : Singleton<InventoryManager>
         if (itemList.Count <= 0)
             return;
         itemList.Remove(item);
-        inventoryUI.InventoryUIUpdate();
+        if (inventoryUI != null)
+            inventoryUI.InventoryUIUpdate();
     }
 }

@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Hi
   m_EditorClassIdentifier: 
   conversations:
-  - name: NPC
-    description: Hi~
-  - name: Player
-    description: Hello
-  - name: NPC
-    description: Final
+  - name: "\uCD0C\uC7A5"
+    description: "\uC5B4\uC11C\uC624\uAC8C"
+  - name: "\uCD0C\uC7A5"
+    description: "\uC6B0\uCE21\uC73C\uB85C \uAC00\uBA74 \uB358\uC804\uC774 \uC788\uC5B4"
+  - name: "\uCD0C\uC7A5"
+    description: "\uD589\uC6B4\uC744 \uBE44\uB124"
   nextConversation: {fileID: 11400000, guid: 0fb93fcd8a70d8040aed51a20cc2525d, type: 2}

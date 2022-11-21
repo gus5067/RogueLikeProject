@@ -25,6 +25,9 @@ public class Weapon : MonoBehaviour
     [SerializeField]
     private WeaponItemData defaultWeapon;
 
+    [SerializeField]
+    private GameObject weaponSlash;
+
     private void Start()
     {
         if (EquipManager.Instance.curWeaponData != null)
@@ -47,7 +50,6 @@ public class Weapon : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapBoxAll(hitPos.transform.position, hitArea, 0f);
         if (colliders.Length > 0)
         {
-           
             foreach (var col in colliders)
             {
                 Monster target = null;
@@ -56,5 +58,23 @@ public class Weapon : MonoBehaviour
                 target?.TakeForce((col.transform.position - transform.position).normalized, power);
             }
         }
+    }
+
+    public void ShowSlash()
+    {
+        weaponSlash.SetActive(true);
+        weaponSlash.transform.position = hitPos.transform.position;
+    }
+    private void OnDrawGizmosSelected()
+    {
+        if (hitPos == null)
+            return;
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(hitPos.transform.position, hitArea);
+    }
+
+    public void ShowOffSlash()
+    {
+        weaponSlash.SetActive(false);
     }
 }

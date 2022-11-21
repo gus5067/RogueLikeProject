@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Stage1
   m_EditorClassIdentifier: 
   pathRooms:
-  - {fileID: 1648865618434276392, guid: 6f8a93bbdb53ee64ea0c6f0151540e92, type: 3}
   - {fileID: 1648865618434276392, guid: 55175a7e89567934595c0d9deb2f87b0, type: 3}
+  - {fileID: 1648865618434276392, guid: 6f8a93bbdb53ee64ea0c6f0151540e92, type: 3}
+  - {fileID: 1648865618434276392, guid: 4ef60d6f5dfdcf646b568c7fff4d041c, type: 3}
+  - {fileID: 1648865618434276392, guid: 602edbdbf0f0ee64d8cd2edca13cc1e6, type: 3}
+  - {fileID: 1648865618434276392, guid: c24de40f744b85347b99cbd8250a26d8, type: 3}
+  - {fileID: 1648865618434276392, guid: 3c3775ac7f955c349a670daefccbdf23, type: 3}
   - {fileID: 1648865618434276392, guid: f30c6744c3335ed42b512d3f4059c3e8, type: 3}
+  - {fileID: 1648865618434276392, guid: 2ba6657e11f3f8542ac1bcd5f35dc601, type: 3}

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Test 1
   m_EditorClassIdentifier: 
   conversations:
-  - name: NPC
-    description: "this is Test\t"
+  - name: "\uCD0C\uC7A5"
+    description: "\uCC38\uACE0\uB85C \uC774 \uC606\uC5D0 \uAC74\uBB3C\uC740 \uC0C1\uC810\uC774\uB124"
   - name: Player
-    description: Test End
+    description: "\uAC10\uC0AC\uD569\uB2C8\uB2E4"
   nextConversation: {fileID: 0}

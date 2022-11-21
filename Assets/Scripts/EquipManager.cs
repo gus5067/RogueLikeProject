@@ -6,7 +6,6 @@ public class EquipManager : Singleton<EquipManager>
 {
     public WeaponItemData curWeaponData;
     public ArmorItemData curArmorData;
-
     public void SetEquip(ItemData item)
     {
         Debug.Log("ÇÔ¼ö ½ÇÇàµÊ");

@@ -60,7 +60,14 @@ public class InventoryUI : MonoBehaviour
     {
         inventoryUnits = GetComponentsInChildren<InventoryUnit>();
         if (InventoryManager.Instance.items.Count <= 0)
+        {
+            foreach(InventoryUnit unit in inventoryUnits)
+            {
+                unit.RemoveItem();
+            }
             return;
+        }
+            
         for (int i = 0; i < inventoryUnits.Length; i++)
         {
             if (i < InventoryManager.Instance.items.Count)
@@ -154,6 +161,7 @@ public class InventoryUI : MonoBehaviour
             targetUnit.AddItem(curUnit.Item);
             curUnit.AddItem(tempItem);
         }
+        
     }
 
     public void SwapUnit(InventoryUnit curUnit, EquipmentUnit targetUnit, ItemType type)

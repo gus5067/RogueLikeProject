@@ -59,6 +59,21 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    public void TileAttack()
+    {
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(hitPos.transform.position, hitArea, 0f, 1<<10);
+        if (colliders.Length > 0)
+        {
+           foreach(var col in colliders)
+            {
+                FragileWall wall = col.GetComponent<FragileWall>();
+                if(wall != null)
+                {
+                    wall.BreakWall(hitPos.transform.position);
+                }
+            }
+        }
+    }
     public void ShowSlash()
     {
         weaponSlash.SetActive(true);

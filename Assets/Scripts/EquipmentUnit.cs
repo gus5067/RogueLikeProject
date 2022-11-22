@@ -32,9 +32,8 @@ public class EquipmentUnit : InventoryUnit
                 break;
             case ItemType.Servant:
                 if (EquipManager.Instance.curArmorData != null)
-                    AddItem(EquipManager.Instance.curArmorData);
+                    AddItem(EquipManager.Instance.curServantData);
                 break;
-
         }
     }
 }

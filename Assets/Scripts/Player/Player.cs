@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -72,12 +73,13 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] private GameObject frozenVfx;
     [SerializeField] private GameObject burnVfx;
     [SerializeField] private GameObject ghost;
-
+    private CinemachineImpulseSource impulse;
     [SerializeField]
     private bool isHit = false;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        impulse = GetComponent<CinemachineImpulseSource>();
     }
 
     private void Start()
@@ -96,7 +98,10 @@ public class Player : MonoBehaviour, IDamageable
     public void HitDamage(int damage)
     {
         if (!isHit)
+        {
             Hp -= damage;
+            impulse.GenerateImpulse();
+        }
         else
             return;
 

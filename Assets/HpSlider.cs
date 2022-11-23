@@ -16,10 +16,10 @@ public class HpSlider : MonoBehaviour
 
     private void Start()
     {
-        slider.value = GameManager.Instance.PlayerHp / GameManager.Instance.playerMaxHp;
+        slider.value = GameManager.Instance.PlayerHp / GameManager.Instance.PlayerMaxHp;
     }
     public void SetHp(int hp)
     {
-        slider.value = (float)hp / (float)GameManager.Instance.playerMaxHp;
+        slider.value = (float)hp / (float)GameManager.Instance.PlayerMaxHp;
     }
 }

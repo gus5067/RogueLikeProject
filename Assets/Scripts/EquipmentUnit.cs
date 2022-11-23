@@ -14,6 +14,8 @@ public class EquipmentUnit : InventoryUnit
         {
             Debug.Log("프로퍼티 들어옴");
             base.Item = value;
+            if (base.Item == null)
+                return;
             EquipManager.Instance.SetEquip(base.Item);
         }
     }
@@ -27,11 +29,11 @@ public class EquipmentUnit : InventoryUnit
                     AddItem(EquipManager.Instance.curWeaponData);
                 break;
             case ItemType.Armor:
-                if (EquipManager.Instance.curArmorData != null)
-                    AddItem(EquipManager.Instance.curArmorData);
+                if (EquipManager.Instance.CurArmorData != null)
+                    AddItem(EquipManager.Instance.CurArmorData);
                 break;
             case ItemType.Servant:
-                if (EquipManager.Instance.curArmorData != null)
+                if (EquipManager.Instance.CurArmorData != null)
                     AddItem(EquipManager.Instance.curServantData);
                 break;
         }

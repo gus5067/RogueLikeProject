@@ -6,7 +6,28 @@ using UnityEngine.SceneManagement;
 public class EquipManager : Singleton<EquipManager>
 {
     public WeaponItemData curWeaponData;
-    public ArmorItemData curArmorData;
+    [SerializeField]
+    private ArmorItemData curArmorData;
+    public ArmorItemData CurArmorData
+    {
+        get
+        {
+            return curArmorData;
+        }
+        set
+        {
+            curArmorData = value;
+            if (value != null)
+            {
+                GameManager.Instance.PlayerMaxHp = playerOrgHp + value.defendValue;
+            }
+            else if(value == null)
+            {
+                GameManager.Instance.PlayerMaxHp = playerOrgHp;
+            }
+        }
+    }
+    private int playerOrgHp = 100;
     public ServantData curServantData;
 
     private new void Awake()
@@ -20,7 +41,7 @@ public class EquipManager : Singleton<EquipManager>
         if (scene.name != "MiningCaveScene")
             return;
         curWeaponData = null;
-        curArmorData = null;
+        CurArmorData = null;
         curServantData = null;
     }
     public void SetEquip(ItemData item)
@@ -31,7 +52,7 @@ public class EquipManager : Singleton<EquipManager>
                 curWeaponData = item as WeaponItemData;
                 break;
             case ItemType.Armor:
-                curArmorData = item as ArmorItemData;
+                CurArmorData = item as ArmorItemData;
                 break;
             case ItemType.Servant:
                 curServantData = item as ServantData;

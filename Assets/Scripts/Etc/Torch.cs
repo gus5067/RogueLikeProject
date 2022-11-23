@@ -25,10 +25,14 @@ public class Torch : MonoBehaviour
         player = transform.parent.GetComponent<Player>();
         player.onPlayerDie += OnPlayerDie;
     }
-
     private void Start()
     {
-        TorchRange = GameManager.Instance.torchRange;
+        Invoke("SetScale", 0.2f);
+    }
+
+    private void SetScale()
+    {
+        transform.localScale = new Vector3(GameManager.Instance.torchRange, GameManager.Instance.torchRange, 1);
     }
     public void OnPlayerDie()
     {

@@ -672,9 +672,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6987801307485698404}
-  torchValue: 6
+  torchValue: 7
   anim: {fileID: 409009937}
-  delayCount: 30
+  delayCount: 20
   playerWeapon: {fileID: 1380669589}
 --- !u!224 &421097714 stripped
 RectTransform:
@@ -1482,7 +1482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6987801307485698404}
-  torchValue: 6
+  torchValue: 5
   anim: {fileID: 1014645117}
   delayCount: 20
 --- !u!114 &1200949645
@@ -1986,7 +1986,7 @@ MonoBehaviour:
   playerHp: 100
   playerMaxHp: 100
   axeDamage: 0
-  torchRange: 3
+  torchRange: 2
   progressNum: 0
   dungeonNum: 0
 --- !u!4 &1736964457
@@ -2232,9 +2232,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 6987801307485698404}
-  torchValue: 6
+  torchValue: 4
   anim: {fileID: 1814600139}
-  delayCount: 30
+  delayCount: 20
   heal: 20
   playerHp: {fileID: 6987801307485698406}
   healCount: 10
@@ -6149,6 +6149,10 @@ PrefabInstance:
     - target: {fileID: 8860985083845381044, guid: 9e009ef2d6588604590c7b0e72d7bdb4, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8860985083845381049, guid: 9e009ef2d6588604590c7b0e72d7bdb4, type: 3}
+      propertyPath: torchRange
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e009ef2d6588604590c7b0e72d7bdb4, type: 3}

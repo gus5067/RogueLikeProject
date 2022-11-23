@@ -21,7 +21,7 @@ public class LoadManager : MonoBehaviour
         nextScene = sceneName;
         if (sceneName != "DungeonScene")
         {
-            GameManager.Instance.PlayerHp = GameManager.Instance.playerMaxHp;
+            GameManager.Instance.PlayerHp = GameManager.Instance.PlayerMaxHp;
         }
         SceneManager.LoadScene("LoadingScene");
     }

@@ -29,13 +29,15 @@ public class SoundManager : Singleton<SoundManager>
         }
     }
 
-    public void AudioPlay(string name, AudioClip clip)
+    public void AudioPlay(string name, Sound sound)
     {
         GameObject effect = new GameObject(name + " Sound");
         AudioSource source = effect.AddComponent<AudioSource>();
-        source.clip = clip;
+
+        source.clip = sound.clip;
+        source.volume = sound.volume;
         source.Play();
 
-        Destroy(effect, clip.length);
+        Destroy(effect, sound.clip.length);
     }
 }

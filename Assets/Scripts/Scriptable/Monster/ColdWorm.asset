@@ -20,3 +20,4 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 283b986b48549674ab2c6128d296ecaa, type: 3}
   animator: {fileID: 0}
   attackType: 2
+  audioClip: {fileID: 8300000, guid: e33c70d511937be419ee48e19e3d8d84, type: 3}

@@ -141,9 +141,10 @@ public class Player : MonoBehaviour, IDamageable
         burnVfx.SetActive(true);
         for (int i = 0; i < 3; i++)
         {
-            this.HitDamage(GameManager.Instance.PlayerHp / 5);
-            yield return new WaitForSeconds(0.2f);
+            HitDamage(GameManager.Instance.PlayerMaxHp/20);
+            yield return new WaitForSeconds(2f);
         }
+        yield return new WaitForSeconds(0.5f);
         isNormalState = true;
         burnVfx.SetActive(false);
         PlayerState = PlayerState.Normal;

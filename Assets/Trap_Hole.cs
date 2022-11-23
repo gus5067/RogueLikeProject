@@ -10,7 +10,7 @@ public class Trap_Hole : Trap
         base.TrapActivate(player, GameManager.Instance.PlayerHp/2);
         if(GameManager.Instance.DungeonNum > 4)
         {
-            player.HitDamage(GameManager.Instance.playerMaxHp);
+            player.HitDamage(GameManager.Instance.PlayerMaxHp);
         }
         else
         {

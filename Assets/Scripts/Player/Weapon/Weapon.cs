@@ -46,6 +46,9 @@ public class Weapon : MonoBehaviour
 
     public virtual void Attack()
     {
+
+        SoundManager.Instance.AudioPlay("Slash", SoundManager.Instance.data.sfx[2]);
+
         Collider2D[] colliders = Physics2D.OverlapBoxAll(hitPos.transform.position, hitArea, 0f);
         if (colliders.Length > 0)
         {

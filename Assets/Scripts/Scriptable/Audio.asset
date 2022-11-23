@@ -19,9 +19,9 @@ MonoBehaviour:
   - name: Walk2
     clip: {fileID: 8300000, guid: 1419f36b72dd2344ebfa7418a3fa8bbe, type: 3}
     volume: 1
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
+  - name: Slash
+    clip: {fileID: 8300000, guid: c5955b1ca51d47245ae5e5e10395d910, type: 3}
+    volume: 1
   bgms:
   - name: DungeonScene
     clip: {fileID: 8300000, guid: 6d2e2db0b97a8c84e9b7aba22496d5fe, type: 3}

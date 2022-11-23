@@ -23,11 +23,24 @@ public class GameManager : Singleton<GameManager>//후에 제네릭 싱글톤으로 변경해
 
         set
         {
-            playerHp = value;
+            if (value > PlayerMaxHp)
+                playerHp = PlayerMaxHp;
+            else
+                playerHp = value;
             OnChangeHp?.Invoke(playerHp);
         }
     }
-    public int playerMaxHp;
+    [SerializeField]
+    private int playerMaxHp;
+    public int PlayerMaxHp
+    {
+        get => playerMaxHp;
+        set
+        {
+            playerMaxHp = value;
+            playerHp = playerMaxHp;
+        }
+    }
     public int axeDamage;
     public float torchRange;
 
